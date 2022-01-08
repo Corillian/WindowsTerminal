@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.props" Condition="Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.props')" />
+  <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.props')" />
+  <Import Project="..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.props" Condition="Exists('..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.props')" />
+  <PropertyGroup Label="Globals">
+    <CppWinRTOptimized>true</CppWinRTOptimized>
+    <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
+    <MinimalCoreWin>true</MinimalCoreWin>
+    <ProjectGuid>{26bd7b31-6e4c-4034-bf6d-cbaba103dc17}</ProjectGuid>
+    <ProjectName>Microsoft.Terminal.Settings.Model</ProjectName>
+    <RootNamespace>Microsoft.Terminal.Settings.Model</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>false</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.18362.0</WindowsTargetPlatformMinVersion>
+    <DesktopCompatible>true</DesktopCompatible>
+    <UseWinUI>true</UseWinUI>
+    <BuildOutDir>$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', '$(Platform)', '$(Configuration)'))</BuildOutDir>
+    <OutDir>$([MSBuild]::NormalizeDirectory('$(BuildOutDir)', '$(MSBuildProjectName)', 'bin'))</OutDir>
+    <IntDir>$([MSBuild]::NormalizeDirectory('$(BuildOutDir)', '$(MSBuildProjectName)', 'obj'))</IntDir>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|arm64">
+      <Configuration>Debug</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|arm64">
+      <Configuration>Release</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <GenerateManifest>false</GenerateManifest>
+    <DesktopCompatible>true</DesktopCompatible>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level4</WarningLevel>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /utf-8</AdditionalOptions>
+      <PreprocessorDefinitions>_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>Microsoft_Terminal_Settings_Model.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">$(ProjectDir)\..\..\external\terminal\dep\jsoncpp\json;$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\..\..\external\terminal\dep\jsoncpp\json;$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\..\..\external\terminal\dep\jsoncpp\json;$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">TerminalInput.lib;fmt.lib;ConRenderBase.lib;ConRenderDx.lib;ConRenderUia.lib;ConTypes.lib;ConTermParser.lib;ConBufferOut.lib;conptylib.lib;ConProps.lib;User32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TerminalInput.lib;fmt.lib;ConRenderBase.lib;ConRenderDx.lib;ConRenderUia.lib;ConTypes.lib;ConTermParser.lib;ConBufferOut.lib;conptylib.lib;ConProps.lib;User32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">TerminalInput.lib;fmt.lib;ConRenderBase.lib;ConRenderDx.lib;ConRenderUia.lib;ConTypes.lib;ConTermParser.lib;ConBufferOut.lib;conptylib.lib;ConProps.lib;User32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">$(ProjectDir)\..\..\external\terminal\dep\jsoncpp\json;$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\..\..\external\terminal\dep\jsoncpp\json;$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\..\..\external\terminal\dep\jsoncpp\json;$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">TerminalInput.lib;fmt.lib;ConRenderBase.lib;ConRenderDx.lib;ConRenderUia.lib;ConTypes.lib;ConTermParser.lib;ConBufferOut.lib;conptylib.lib;ConProps.lib;User32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TerminalInput.lib;fmt.lib;ConRenderBase.lib;ConRenderDx.lib;ConRenderUia.lib;ConTypes.lib;ConTermParser.lib;ConBufferOut.lib;conptylib.lib;ConProps.lib;User32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">TerminalInput.lib;fmt.lib;ConRenderBase.lib;ConRenderDx.lib;ConRenderUia.lib;ConTypes.lib;ConTermParser.lib;ConBufferOut.lib;conptylib.lib;ConProps.lib;User32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="ActionAndArgs.h">
+      <DependentUpon>ActionArgs.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="ActionArgs.h">
+      <DependentUpon>ActionArgs.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="ActionMap.h">
+      <DependentUpon>ActionMap.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="AllShortcutActions.h" />
+    <ClInclude Include="AppearanceConfig.h">
+      <DependentUpon>AppearanceConfig.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="ApplicationState.h">
+      <DependentUpon>ApplicationState.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="AzureCloudShellGenerator.h" />
+    <ClInclude Include="CascadiaSettings.h">
+      <DependentUpon>CascadiaSettings.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="ColorScheme.h">
+      <DependentUpon>ColorScheme.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <DependentUpon>Command.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="DefaultProfileUtils.h" />
+    <ClInclude Include="DefaultTerminal.h">
+      <DependentUpon>DefaultTerminal.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="EnumMappings.h">
+      <DependentUpon>EnumMappings.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="FileUtils.h" />
+    <ClInclude Include="FontConfig.h">
+      <DependentUpon>FontConfig.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="GlobalAppSettings.h">
+      <DependentUpon>GlobalAppSettings.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="HashUtils.h" />
+    <ClInclude Include="IconPathConverter.h">
+      <DependentUpon>IconPathConverter.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="IDynamicProfileGenerator.h" />
+    <ClInclude Include="IInheritable.h" />
+    <ClInclude Include="IInheritable.idl.h" />
+    <ClInclude Include="JsonUtils.h" />
+    <ClInclude Include="KeyChordSerialization.h">
+      <DependentUpon>KeyChordSerialization.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="LegacyProfileGeneratorNamespaces.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="PowershellCoreProfileGenerator.h" />
+    <ClInclude Include="Profile.h">
+      <DependentUpon>Profile.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SettingsTypes.h" />
+    <ClInclude Include="TerminalSettings.h">
+      <DependentUpon>TerminalSettingsProfile.idl</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="TerminalSettingsSerializationHelpers.h" />
+    <ClInclude Include="TerminalWarnings.h" />
+    <ClInclude Include="WslDistroGenerator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\external\terminal\dep\jsoncpp\jsoncpp.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ActionAndArgs.cpp">
+      <DependentUpon>ActionArgs.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="ActionArgs.cpp">
+      <DependentUpon>ActionArgs.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="ActionMap.cpp">
+      <DependentUpon>ActionMap.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="ActionMapSerialization.cpp">
+      <DependentUpon>ActionMap.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="AppearanceConfig.cpp">
+      <DependentUpon>AppearanceConfig.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="ApplicationState.cpp">
+      <DependentUpon>ApplicationState.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="AzureCloudShellGenerator.cpp" />
+    <ClCompile Include="CascadiaSettings.cpp">
+      <DependentUpon>CascadiaSettings.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="CascadiaSettingsSerialization.cpp">
+      <DependentUpon>CascadiaSettings.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="ColorScheme.cpp">
+      <DependentUpon>ColorScheme.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <DependentUpon>Command.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="DefaultProfileUtils.cpp" />
+    <ClCompile Include="DefaultTerminal.cpp">
+      <DependentUpon>DefaultTerminal.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="EnumMappings.cpp">
+      <DependentUpon>EnumMappings.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="FileUtils.cpp" />
+    <ClCompile Include="FontConfig.cpp">
+      <DependentUpon>FontConfig.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="GlobalAppSettings.cpp">
+      <DependentUpon>GlobalAppSettings.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="IconPathConverter.cpp">
+      <DependentUpon>IconPathConverter.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="init.cpp" />
+    <ClCompile Include="KeyChordSerialization.cpp">
+      <DependentUpon>KeyChordSerialization.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="PowershellCoreProfileGenerator.cpp" />
+    <ClCompile Include="Profile.cpp">
+      <DependentUpon>Profile.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="TerminalSettings.cpp">
+      <DependentUpon>TerminalSettings.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="WslDistroGenerator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Microsoft_Terminal_Settings_Model.def" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt">
+      <DeploymentContent>false</DeploymentContent>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinRTUtils\WinRTUtils.vcxproj">
+      <Project>{1b63a9a8-f7c3-4a9b-9d8c-db428e092c59}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="ActionArgs.idl" />
+    <Midl Include="ActionMap.idl" />
+    <Midl Include="AppearanceConfig.idl" />
+    <Midl Include="ApplicationState.idl" />
+    <Midl Include="CascadiaSettings.idl" />
+    <Midl Include="ColorScheme.idl" />
+    <Midl Include="Command.idl" />
+    <Midl Include="DefaultTerminal.idl" />
+    <Midl Include="EnumMappings.idl" />
+    <Midl Include="FontConfig.idl" />
+    <Midl Include="GlobalAppSettings.idl" />
+    <Midl Include="IAppearanceConfig.idl" />
+    <Midl Include="IconPathConverter.idl" />
+    <Midl Include="KeyChordSerialization.idl" />
+    <Midl Include="Profile.idl" />
+    <Midl Include="TerminalSettings.idl" />
+    <Midl Include="TerminalWarnings.idl" />
+  </ItemGroup>
+  <ItemGroup>
+    <GeneratedDefaultConfig Include="..\..\external\terminal\src\cascadia\TerminalSettingsModel\Generated Files\defaults.h" />
+    <GeneratedDefaultConfig Include="..\..\external\terminal\src\cascadia\TerminalSettingsModel\Generated Files\defaults-universal.h" />
+    <GeneratedDefaultConfig Include="..\..\external\terminal\src\cascadia\TerminalSettingsModel\Generated Files\userDefaults.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Resources\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Terminal.Core">
+      <HintPath>$(BuildOutDir)TerminalCore\bin\Microsoft.Terminal.Core.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+    </Reference>
+    <Reference Include="Microsoft.Terminal.TerminalConnection">
+      <HintPath>$(BuildOutDir)Microsoft.Terminal.TerminalConnection\bin\Microsoft.Terminal.TerminalConnection.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+    </Reference>
+    <!-- Manually add a reference to TerminalControl here. We need this so
+    MDMERGE will know where the TermControl types are defined. However, we need
+    to do it exactly like this so the packaging project won't roll up
+    TermControl's .xbf's from both the TermControl project and this one. -->
+    <Reference Include="Microsoft.Terminal.Control">
+      <HintPath>$(BuildOutDir)Microsoft.Terminal.Control\bin\Microsoft.Terminal.Control.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VersionInfo.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.targets" Condition="Exists('..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.targets')" />
+    <Import Project="..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.211019.2\build\native\Microsoft.Windows.ImplementationLibrary.targets" Condition="Exists('..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.211019.2\build\native\Microsoft.Windows.ImplementationLibrary.targets')" />
+    <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.targets')" />
+    <Import Project="..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.targets" Condition="Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.211019.2\build\native\Microsoft.Windows.ImplementationLibrary.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.211019.2\build\native\Microsoft.Windows.ImplementationLibrary.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.targets'))" />
+  </Target>
+  <Target Name="CopyOpenConsoleConfigHeaders" AfterTargets="Midl" BeforeTargets="ClCompile">
+    <Message Text="Copying OpenConsole generated config files." Importance="high" />
+    <Copy SourceFiles="@(GeneratedDefaultConfig)" DestinationFolder="$(ProjectDir)Generated Files" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>accd3aa8-1ba0-4223-9bbe-0c431709210b</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{926ab91d-31b4-48c3-b9a4-e681349f27f0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="KeyChord.cpp" />
+    <ClCompile Include="EventArgs.cpp" />
+    <ClCompile Include="ControlCore.cpp" />
+    <ClCompile Include="init.cpp" />
+    <ClCompile Include="XamlLights.cpp" />
+    <ClCompile Include="InteractivityAutomationPeer.cpp" />
+    <ClCompile Include="ControlInteractivity.cpp" />
+    <ClCompile Include="XamlUiaTextRange.cpp" />
+    <ClCompile Include="TermControlAutomationPeer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="KeyChord.h" />
+    <ClInclude Include="EventArgs.h" />
+    <ClInclude Include="ControlCore.h" />
+    <ClInclude Include="XamlLights.h" />
+    <ClInclude Include="InteractivityAutomationPeer.h" />
+    <ClInclude Include="ControlInteractivity.h" />
+    <ClInclude Include="XamlUiaTextRange.h" />
+    <ClInclude Include="TermControlAutomationPeer.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="KeyChord.idl" />
+    <Midl Include="IKeyBindings.idl" />
+    <Midl Include="IDirectKeyListener.idl" />
+    <Midl Include="ICoreState.idl" />
+    <Midl Include="IMouseWheelListener.idl" />
+    <Midl Include="IControlAppearance.idl" />
+    <Midl Include="IControlSettings.idl" />
+    <Midl Include="EventArgs.idl" />
+    <Midl Include="ControlCore.idl" />
+    <Midl Include="XamlLights.idl" />
+    <Midl Include="ControlInteractivity.idl" />
+    <Midl Include="InteractivityAutomationPeer.idl" />
+    <Midl Include="TermControlAutomationPeer.idl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Microsoft.Terminal.Control.def" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Generic.xaml" />
+    <Page Include="TermControl.xaml" />
+    <Page Include="SearchBoxControl.xaml" />
+    <Page Include="TSFInputControl.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VersionInfo.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

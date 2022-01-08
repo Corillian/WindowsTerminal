@@ -1,0 +1,3 @@
+[submodule "external/terminal"]
+	path = external/terminal
+	url = https://github.com/microsoft/terminal.git

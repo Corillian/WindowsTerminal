@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64;x86;ARM64</Platforms>
+	<SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+  	<BuildOutDir>$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', '$(Platform)', '$(Configuration)'))</BuildOutDir>
+  	<OutDir>$([MSBuild]::NormalizeDirectory('$(BuildOutDir)', '$(MSBuildProjectName)', 'bin'))</OutDir>
+  	<IntDir>$([MSBuild]::NormalizeDirectory('$(BuildOutDir)', '$(MSBuildProjectName)', 'obj'))</IntDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="1.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpenConsole\Microsoft.Terminal.TerminalConnection\Microsoft.Terminal.TerminalConnection.vcxproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+	<CsWinRTMessageImportance>high</CsWinRTMessageImportance>
+	<CsWinRTWindowsMetadata>sdk</CsWinRTWindowsMetadata>
+	<CsWinRTIncludes>Microsoft.Terminal.TerminalConnection</CsWinRTIncludes>
+	<CsWinRTGeneratedFilesDir>$(OutDir)</CsWinRTGeneratedFilesDir>
+	<Version>1.11.3471</Version>
+	<PackageProjectUrl>https://github.com/Corillian/WindowsTerminal</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/Corillian/WindowsTerminal</RepositoryUrl>
+	<Description>An abstraction for Windows Terminal connections.</Description>
+  </PropertyGroup>
+	
+  <ItemGroup Condition="'$(Configuration)'=='Debug'">
+	<Content Include="$(BuildOutDir)Microsoft.Terminal.TerminalConnection\bin\cpprest142_2_10d.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+	
+  <ItemGroup Condition="'$(Configuration)'=='Release'">
+	<Content Include="$(BuildOutDir)Microsoft.Terminal.TerminalConnection\bin\cpprest142_2_10.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

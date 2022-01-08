@@ -1,0 +1,22 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+namespace Microsoft.Terminal.Settings.Model
+{
+    enum InfoBarMessage
+    {
+        KeyboardServiceWarning = 0,
+        SetAsDefault,
+    };
+
+    [default_interface] runtimeclass ApplicationState {
+        static ApplicationState SharedInstance();
+
+        void Reload();
+        void Reset();
+
+        String FilePath { get; };
+
+        Windows.Foundation.Collections.IVector<InfoBarMessage> DismissedMessages { get; set; };
+    }
+}

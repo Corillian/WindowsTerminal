@@ -1,0 +1,32 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+namespace Microsoft.Terminal.Control
+{
+    [flags]
+    enum VkModifiers
+    {
+        None = 0,
+        Control = 1,
+        Menu = 2,
+        Shift = 4,
+        Windows = 8,
+    };
+
+    [default_interface]
+    runtimeclass KeyChord
+    {
+        KeyChord();
+        KeyChord(VkModifiers modifiers, Int32 vkey, Int32 scanCode);
+        KeyChord(Boolean ctrl, Boolean alt, Boolean shift, Boolean win, Int32 vkey, Int32 scanCode);
+
+        UInt64 Hash();
+
+        // Due to a bug in CsWinRT (https://github.com/microsoft/CsWinRT/issues/864) this is modified
+        Boolean DeepEquals(KeyChord other);
+
+        VkModifiers Modifiers;
+        Int32 Vkey;
+        Int32 ScanCode;
+    }
+}
