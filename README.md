@@ -31,7 +31,7 @@ Since we aren't having enough fun yet there are additional considerations for th
 .\Build.ps1 -restore
 ```
 
-This will restore OpenConsole, build the requisite subset of OpenConsole dependencies, and then build the WinUI3 wrappers in `WindowsTerminal.sln`. After you do this initial build you can then open `WindowsTerminal.sln` and build via Visual Studio as you normally would.
+This will restore OpenConsole, build the requisite subset of OpenConsole dependencies, and then build the WinUI3 wrappers in `WindowsTerminal.sln`. If OpenConsole fails to build due to errors about hitting the heap limit of the C++ compiler just run `Build.ps1` (without `-restore`) until it stops complaining about heap limits and everything _should_ work. After you do this initial build you can then open `WindowsTerminal.sln` and build via Visual Studio as you normally would. In fact, if `Build.ps1` successfully builds OpenConsole but fails to build `WindowsTerminal.sln` you should try building `WindowsTerminal.sln` in Visual Studio because... welcome to WinRT.
 
 ## Some Thoughts on WinRT
 
