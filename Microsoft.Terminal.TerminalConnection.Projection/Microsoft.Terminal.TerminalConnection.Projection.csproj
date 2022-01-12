@@ -1,11 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetFrameworks>net6.0-windows10.0.19041.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Platforms>AnyCPU;x64;x86;ARM64</Platforms>
 	<SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
+	<Version>1.11.3471</Version>
+	<PackageProjectUrl>https://github.com/Corillian/WindowsTerminal</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/Corillian/WindowsTerminal</RepositoryUrl>
+	<Description>A WinUI3 abstraction for Windows Terminal connections. The root namespace is Microsoft.Terminal.TerminalConnection.</Description>
+	<Authors>Keith Newton</Authors>
+	<PackageId>WindowsTerminal.WinUI3.TerminalConnection</PackageId>
+	<PackageTags>Windows;Terminal;WinUI</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -27,17 +34,21 @@
 	<CsWinRTWindowsMetadata>sdk</CsWinRTWindowsMetadata>
 	<CsWinRTIncludes>Microsoft.Terminal.TerminalConnection</CsWinRTIncludes>
 	<CsWinRTGeneratedFilesDir>$(OutDir)</CsWinRTGeneratedFilesDir>
-	<Version>1.11.3471</Version>
-	<PackageProjectUrl>https://github.com/Corillian/WindowsTerminal</PackageProjectUrl>
-	<RepositoryUrl>https://github.com/Corillian/WindowsTerminal</RepositoryUrl>
-	<Description>An abstraction for Windows Terminal connections.</Description>
   </PropertyGroup>
 	
-  <ItemGroup Condition="'$(Configuration)'=='Debug'">
+  <ItemGroup Condition="'$(Configuration)'=='Debug' And '$(Platform)' != 'x86' And '$(Platform)' != 'AnyCPU'">
 	<Content Include="$(BuildOutDir)Microsoft.Terminal.TerminalConnection\bin\cpprest142_2_10d.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)'=='Debug' And '$(Platform)' == 'x86'">
+    <Content Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'Win32', '$(Configuration)', 'Microsoft.Terminal.TerminalConnection', 'bin'))cpprest142_2_10d.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 	
-  <ItemGroup Condition="'$(Configuration)'=='Release'">
+  <ItemGroup Condition="'$(Configuration)'=='Release' And '$(Platform)' != 'x86' And '$(Platform)' != 'AnyCPU'">
 	<Content Include="$(BuildOutDir)Microsoft.Terminal.TerminalConnection\bin\cpprest142_2_10.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+	
+  <ItemGroup Condition="'$(Configuration)'=='Release' And '$(Platform)' == 'x86'">
+    <Content Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'Win32', '$(Configuration)', 'Microsoft.Terminal.TerminalConnection', 'bin'))cpprest142_2_10.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

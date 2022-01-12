@@ -1,11 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetFrameworks>net6.0-windows10.0.19041.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
 	<Platforms>AnyCPU;x64;x86;ARM64</Platforms>
+	<Version>1.11.3471-beta</Version>
+    <Description>A WinUI3 library for reading and writing Windows Terminal settings. The root namespace is Microsoft.Terminal.Settings.Model.</Description>
+    <PackageProjectUrl>https://github.com/Corillian/WindowsTerminal</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Corillian/WindowsTerminal</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Authors>Keith Newton</Authors>
+    <PackageTags>Windows;Terminal;WinUI</PackageTags>
+	<PackageId>WindowsTerminal.WinUI3.Settings.Model</PackageId>
+	<NuspecFile>$(ProjectDir)..\NuGet\WindowsTerminal.WinUI3.Settings.Model.nuspec</NuspecFile>
+	<NuspecBasePath>$(ProjectDir)..\NuGet\</NuspecBasePath>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -24,16 +34,21 @@
     <CsWinRTWindowsMetadata>sdk</CsWinRTWindowsMetadata>
     <CsWinRTIncludes>Microsoft.Terminal.Settings.Model</CsWinRTIncludes>
     <CsWinRTGeneratedFilesDir>$(OutDir)</CsWinRTGeneratedFilesDir>
-    <Version>1.11.3471</Version>
-    <Description>Read/write settings for Windows Terminal.</Description>
-    <PackageProjectUrl>https://github.com/Corillian/WindowsTerminal</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Corillian/WindowsTerminal</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 	
-  <ItemGroup>
+  <ItemGroup Condition="'$(Platform)' != 'x86' And '$(Platform)' != 'AnyCPU'">
 	<CsWinRTInputs Include="$(BuildOutDir)TerminalCore\bin\Microsoft.Terminal.Core.winmd" />
     <CsWinRTInputs Include="$(BuildOutDir)Microsoft.Terminal.Control\bin\Microsoft.Terminal.Control.winmd" />
+  </ItemGroup>
+	
+  <ItemGroup Condition="'$(Platform)' == 'x86'">
+	<CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'Win32', '$(Configuration)', 'TerminalCore', 'bin'))Microsoft.Terminal.Core.winmd" />
+    <CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'Win32', '$(Configuration)', 'Microsoft.Terminal.Control', 'bin'))Microsoft.Terminal.Control.winmd" />
+  </ItemGroup>
+	
+  <ItemGroup Condition="'$(Platform)' == 'AnyCPU'">
+	<CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'x64', '$(Configuration)', 'TerminalCore', 'bin'))Microsoft.Terminal.Core.winmd" />
+    <CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'x64', '$(Configuration)', 'Microsoft.Terminal.Control', 'bin'))Microsoft.Terminal.Control.winmd" />
   </ItemGroup>
 	
   <ItemGroup>

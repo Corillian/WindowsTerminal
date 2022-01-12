@@ -33,7 +33,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{9C3A12A3-B912-44CB-8938-70832147DBA2}"
 	ProjectSection(SolutionItems) = preProject
 		Build.ps1 = Build.ps1
-		FixProxyHost.ps1 = FixProxyHost.ps1
+		PatchOpenConsole.ps1 = PatchOpenConsole.ps1
+		UpdateOpenConsoleCppWinRT.ps1 = UpdateOpenConsoleCppWinRT.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "patches", "patches", "{5C5942FD-39FF-415A-AACC-8E79EFA9D98A}"
@@ -76,6 +77,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{CCAD80
 	ProjectSection(SolutionItems) = preProject
 		CONTRIBUTING.md = CONTRIBUTING.md
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{2D8FF25F-6126-46FA-8764-85CE639A2764}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnyCpuGenerator", "Tools\AnyCpuGenerator\AnyCpuGenerator.csproj", "{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{32896DDE-7755-46CB-B3E4-C276058529F4}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet\WindowsTerminal.WinUI3.Control.nuspec = NuGet\WindowsTerminal.WinUI3.Control.nuspec
+		NuGet\WindowsTerminal.WinUI3.Settings.Model.nuspec = NuGet\WindowsTerminal.WinUI3.Settings.Model.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{EE436E84-AC4F-4C3C-BB26-5FEAC0794DAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net6.0-windows10.0.18362.0", "net6.0-windows10.0.18362.0", "{B558322B-BAC7-4DFF-B456-9A552D3547C2}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet\build\net6.0-windows10.0.18362.0\WindowsTerminal.WinUI3.Control.targets = NuGet\build\net6.0-windows10.0.18362.0\WindowsTerminal.WinUI3.Control.targets
+		NuGet\build\net6.0-windows10.0.18362.0\WindowsTerminal.WinUI3.Settings.Model.targets = NuGet\build\net6.0-windows10.0.18362.0\WindowsTerminal.WinUI3.Settings.Model.targets
 	EndProjectSection
 EndProject
 Global
@@ -258,6 +277,22 @@ Global
 		{BF23302C-0F59-436E-B735-C84D9673B407}.Release|x64.Build.0 = Release|x64
 		{BF23302C-0F59-436E-B735-C84D9673B407}.Release|x86.ActiveCfg = Release|x86
 		{BF23302C-0F59-436E-B735-C84D9673B407}.Release|x86.Build.0 = Release|x86
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Debug|arm64.Build.0 = Debug|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Debug|x64.Build.0 = Debug|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Debug|x86.Build.0 = Debug|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Release|arm64.ActiveCfg = Release|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Release|arm64.Build.0 = Release|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Release|x64.ActiveCfg = Release|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Release|x64.Build.0 = Release|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Release|x86.ActiveCfg = Release|Any CPU
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -269,6 +304,9 @@ Global
 		{1B63A9A8-F7C3-4A9B-9D8C-DB428E092C59} = {0E759681-E62E-493D-88CF-4CC63CDAC3B5}
 		{524CB2D1-4661-4C67-B547-24EE6E830299} = {0E759681-E62E-493D-88CF-4CC63CDAC3B5}
 		{CFEECFDC-368C-4662-8A62-B7136818EF04} = {0E759681-E62E-493D-88CF-4CC63CDAC3B5}
+		{C5BFB934-265D-4B0D-8BED-BECA6C4E410B} = {2D8FF25F-6126-46FA-8764-85CE639A2764}
+		{EE436E84-AC4F-4C3C-BB26-5FEAC0794DAE} = {32896DDE-7755-46CB-B3E4-C276058529F4}
+		{B558322B-BAC7-4DFF-B456-9A552D3547C2} = {EE436E84-AC4F-4C3C-BB26-5FEAC0794DAE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1303320-4195-4CCA-90D5-D6E7CF9EFC02}

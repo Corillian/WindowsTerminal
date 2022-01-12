@@ -337,7 +337,4 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.targets'))" />
   </Target>
-  <!--<Target Name="OpenConsoleDependencies" BeforeTargets="BeforeBuild;BuildCompile;BuildLink;GetNativeReferences;PreBuildEvent;Rebuild;Build;Midl">
-    <Exec Command="&quot;$(MSBuildBinPath)\MSBuild.exe&quot; &quot;$(SolutionDir)external\terminal\OpenConsole.sln&quot; -p:Configuration=$(Configuration) -p:Platform=$(Platform) -p:RestorePackagesConfig=true &quot;-t:Shared\Virtual Terminal\TerminalInput&quot; -t:Shared\Rendering\RendererUia -t:Terminal\TerminalConnection -t:Terminal\Control\TerminalCore" />
-  </Target>-->
 </Project>

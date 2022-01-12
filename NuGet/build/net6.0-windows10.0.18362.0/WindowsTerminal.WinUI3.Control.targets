@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<Content Include="$(MSBuildThisFileDirectory)..\..\ihatewinrt\win10-$(Platform)\native\Microsoft.Terminal.Control.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Visible>false</Visible>
+		</Content>
+		<!--<Content Include="$(MSBuildThisFileDirectory)..\..\ihatewinrt\win10-$(Platform)\native\Microsoft.Terminal.Control.pri">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Visible>false</Visible>
+		</Content>-->
+		<Content Include="$(MSBuildThisFileDirectory)..\..\ihatewinrt\win10-$(Platform)\lib\net6.0-windows10.0.18362.0\Microsoft.Terminal.Control.Projection.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Visible>false</Visible>
+			<IsAssembly>true</IsAssembly>
+		</Content>
+		<Content Include="$(MSBuildThisFileDirectory)..\..\ihatewinrt\win10-$(Platform)\native\Microsoft.Terminal.TerminalConnection.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Visible>false</Visible>
+		</Content>
+		<Content Include="$(MSBuildThisFileDirectory)..\..\ihatewinrt\win10-$(Platform)\lib\net6.0-windows10.0.18362.0\Microsoft.Terminal.TerminalConnection.Projection.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Visible>false</Visible>
+			<IsAssembly>true</IsAssembly>
+		</Content>
+		<Content Include="$(MSBuildThisFileDirectory)..\..\ihatewinrt\win10-$(Platform)\native\cpprest142_2_10.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Visible>false</Visible>
+		</Content>
+	</ItemGroup>
+
+	<!--<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)..\..\lib\uap10.0.18362\**\*.xbf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Visible>false</Visible>
+		</None>
+	</ItemGroup>-->
+
+	<!-- Why does the consuming project pull in the .pri for *every* architecture!? I hate C++/WinRT and NuGet so, so much. Nothing works right, the documentation sucks. -->
+	<!--<Target Name="_FixWindowsTerminalWinUI3ControlMUXPri" AfterTargets="RemoveDuplicatePriFiles" BeforeTargets="_ComputeInputPriFiles">
+		<ItemGroup>
+			<_WindowsTerminalWinUI3ControlPriToBeRemoved Include="@(_PriFilesFromPayload)" Condition="'%(_PriFilesFromPayload.RuntimeIdentifier)' != 'win10-$(Platform)' And '%(_PriFilesFromPayload.NuGetPackageId)' == 'WindowsTerminal.WinUI3.Control'" />
+			<_PriFilesFromPayload Remove="@(_WindowsTerminalWinUI3ControlPriToBeRemoved)" />
+		</ItemGroup>
+	</Target>-->
+</Project>

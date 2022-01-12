@@ -78,7 +78,7 @@ namespace SampleApp
                 (uint)terminalSettings.InitialCols,
                 Guid.NewGuid()));
 
-            this.Title = terminalSettings.StartingTitle;
+            this.Title = "SampleApp: " + terminalSettings.StartingTitle;
 
             // Give term control a child of the settings so that any overrides go in the child
             // This way, when we do a settings reload we just update the parent and the overrides remain

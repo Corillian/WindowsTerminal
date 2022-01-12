@@ -1,11 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetFrameworks>net6.0-windows10.0.19041.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
 	<Platforms>AnyCPU;x64;x86;ARM64</Platforms>
+    <Version>1.11.3471</Version>
+    <RepositoryUrl>https://github.com/Corillian/WindowsTerminal</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Windows;Terminal;WinUI;XAML</PackageTags>
+    <PackageProjectUrl>https://github.com/Corillian/WindowsTerminal</PackageProjectUrl>
+    <Description>Embeddable Windows Terminal for WinUI3. The root namespace is Microsoft.Terminal.Control.</Description>
+    <Authors>Keith Newton</Authors>
+    <PackageId>WindowsTerminal.WinUI3.Control</PackageId>
+	<NuspecFile>$(ProjectDir)..\NuGet\WindowsTerminal.WinUI3.Control.nuspec</NuspecFile>
+	<NuspecBasePath>$(ProjectDir)..\NuGet\</NuspecBasePath>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -13,6 +23,10 @@
     <OutDir>$([MSBuild]::NormalizeDirectory('$(BuildOutDir)', '$(MSBuildProjectName)', 'bin'))</OutDir>
     <IntDir>$([MSBuild]::NormalizeDirectory('$(BuildOutDir)', '$(MSBuildProjectName)', 'obj'))</IntDir>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove=".nuspec" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.CsWinRT" Version="1.4.1" />
@@ -24,27 +38,21 @@
     <CsWinRTWindowsMetadata>sdk</CsWinRTWindowsMetadata>
     <CsWinRTIncludes>Microsoft.Terminal.Core;Microsoft.Terminal.Control</CsWinRTIncludes>
     <CsWinRTGeneratedFilesDir>$(OutDir)</CsWinRTGeneratedFilesDir>
-    <AssemblyVersion>1.11.3471.0</AssemblyVersion>
-    <FileVersion>1.11.3471.0</FileVersion>
-    <Version>1.11.3471</Version>
-    <RepositoryUrl>https://github.com/Corillian/WindowsTerminal</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>windows;terminal;winui</PackageTags>
-    <PackageProjectUrl>https://github.com/Corillian/WindowsTerminal</PackageProjectUrl>
-    <Description>Embeddable Windows Terminal for WinUI3.</Description>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Platform)' != 'x86' And '$(Platform)' != 'AnyCPU'">
 	  <CsWinRTInputs Include="$(BuildOutDir)TerminalCore\bin\Microsoft.Terminal.Core.winmd" />
 	  <CsWinRTInputs Include="$(BuildOutDir)Microsoft.Terminal.Control\bin\Microsoft.Terminal.Control.winmd" />
+	  <Content Include="$(BuildOutDir)Microsoft.Terminal.Control\bin\Microsoft.Terminal.Control.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+	
+  <ItemGroup Condition="'$(Platform)' == 'x86'">
+	  <CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'Win32', '$(Configuration)', 'TerminalCore', 'bin'))Microsoft.Terminal.Core.winmd" />
+	  <CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'Win32', '$(Configuration)', 'Microsoft.Terminal.Control', 'bin'))Microsoft.Terminal.Control.winmd" />
+	  <Content Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'Win32', '$(Configuration)', 'Microsoft.Terminal.Control', 'bin'))Microsoft.Terminal.Control.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.Terminal.TerminalConnection.Projection\Microsoft.Terminal.TerminalConnection.Projection.csproj" />
   </ItemGroup>
-	
-  <ItemGroup>
-	  <Content Include="$(BuildOutDir)Microsoft.Terminal.Control\bin\Microsoft.Terminal.Control.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
-
 </Project>
