@@ -160,10 +160,27 @@ if($pack -eq $true)
     $anyCpuControlProj = [System.IO.Path]::Combine($buildPath, 'AnyCPU', 'Release', 'Microsoft.Terminal.Control.Projection', 'bin', 'Microsoft.Terminal.Control.Projection.dll')
     $x64SettingsProj = [System.IO.Path]::Combine($buildPath, 'x64', 'Release', 'Microsoft.Terminal.Settings.Model.Projection', 'bin', 'Microsoft.Terminal.Settings.Model.Projection.dll')
     $anyCpuSettingsProj = [System.IO.Path]::Combine($buildPath, 'AnyCPU', 'Release', 'Microsoft.Terminal.Settings.Model.Projection', 'bin', 'Microsoft.Terminal.Settings.Model.Projection.dll')
+    #$x64TermConProj = [System.IO.Path]::Combine($buildPath, 'x64', 'Release', 'Microsoft.Terminal.TerminalConnection.Projection', 'bin', 'Microsoft.Terminal.TerminalConnection.Projection.dll')
+    #$anyCpuTermConProj = [System.IO.Path]::Combine($buildPath, 'AnyCPU', 'Release', 'Microsoft.Terminal.TerminalConnection.Projection', 'bin', 'Microsoft.Terminal.TerminalConnection.Projection.dll')
+    $keypairBase = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('UserProfile'), '.windowsterminalkeys')
+    $keypairControl = [System.IO.Path]::Combine($keypairBase, 'microsoft.terminal.control.projection.snk')
+    $keypairSettings = [System.IO.Path]::Combine($keypairBase, 'microsoft.terminal.settings.model.projection.snk')
+    #$keypairTermCon = [System.IO.Path]::Combine($keypairBase, 'microsoft.terminal.terminalconnection.projection.snk')
+
+    #Write-Host "Generating AnyCPU assembly for $x64TermConProj at $anyCpuTermConProj"
+
+    #& $anyCpuGen $x64TermConProj $anyCpuTermConProj $keypairTermCon
+
+    #if($LastExitCode -ne 0)
+    #{
+    #    throw 'Error: Failed to generate AnyCPU Microsoft.Terminal.TerminalConnection.Projection.dll.'
+    #}
+
+    # NOTE: AnyCPU TerminalConnection compiles just fine so we don't have to jump through hoops to generate it
 
     Write-Host "Generating AnyCPU assembly for $x64ControlProj at $anyCpuControlProj"
 
-    & $anyCpuGen $x64ControlProj $anyCpuControlProj
+    & $anyCpuGen $x64ControlProj $anyCpuControlProj # $keypairControl
 
     if($LastExitCode -ne 0)
     {
@@ -172,7 +189,7 @@ if($pack -eq $true)
 
     Write-Host "Generating AnyCPU assembly for $x64SettingsProj at $anyCpuSettingsProj"
 
-    & $anyCpuGen $x64SettingsProj $anyCpuSettingsProj
+    & $anyCpuGen $x64SettingsProj $anyCpuSettingsProj # $keypairSettings
 
     if($LastExitCode -ne 0)
     {

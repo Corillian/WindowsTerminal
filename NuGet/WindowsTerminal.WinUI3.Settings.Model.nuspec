@@ -38,6 +38,6 @@
 		<file src="..\_build\x64\Release\Microsoft.Terminal.Settings.Model.Projection\bin\Microsoft.Terminal.Settings.Model.Projection.pri" target="lib\net6.0-windows10.0.18362.0"/>
 
 		<!-- For some stupid reason CsWinRT is pulling the native DLL in as a resource and sticking it in the .pri so we have to arbitrarily include one or else bad things happen -->
-		<!--<file src="..\_build\x64\Release\Microsoft.Terminal.Control\bin\Microsoft.Terminal.Control.dll" target="ref\net6.0-windows10.0.18362.0\Microsoft.Terminal.Control.Projection"/>-->
+		<file src="..\_build\x64\Release\Microsoft.Terminal.Control\bin\Microsoft.Terminal.Control.dll" target="lib\net6.0-windows10.0.18362.0\Microsoft.Terminal.Control.Projection"/>
 	</files>
 </package>

@@ -36,6 +36,12 @@
     <CsWinRTGeneratedFilesDir>$(OutDir)</CsWinRTGeneratedFilesDir>
   </PropertyGroup>
 	
+  <!--<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+	<_UserProfilePath>$([System.Environment]::GetFolderPath(SpecialFolder.UserProfile))</_UserProfilePath>
+	<SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>$([System.IO.Path]::Combine($(_UserProfilePath), '.windowsterminalkeys', 'microsoft.terminal.settings.model.projection.snk'))</AssemblyOriginatorKeyFile>
+  </PropertyGroup>-->
+	
   <ItemGroup Condition="'$(Platform)' != 'x86' And '$(Platform)' != 'AnyCPU'">
 	<CsWinRTInputs Include="$(BuildOutDir)TerminalCore\bin\Microsoft.Terminal.Core.winmd" />
     <CsWinRTInputs Include="$(BuildOutDir)Microsoft.Terminal.Control\bin\Microsoft.Terminal.Control.winmd" />
