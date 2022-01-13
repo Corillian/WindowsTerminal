@@ -148,6 +148,9 @@
     <ClInclude Include="EchoConnection.h">
       <DependentUpon>EchoConnection.idl</DependentUpon>
     </ClInclude>
+    <ClInclude Include="PassThroughConnection.h">
+	  <DependentUpon>PassThroughConnection.idl</DependentUpon>
+    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -166,6 +169,9 @@
       <DependentUpon>EchoConnection.idl</DependentUpon>
     </ClCompile>
     <ClCompile Include="init.cpp" />
+    <ClCompile Include="PassThroughConnection.cpp">
+	  <DependentUpon>PassThroughConnection.idl</DependentUpon>
+    </ClCompile>
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -185,6 +191,7 @@
     <Midl Include="ConnectionInformation.idl" />
     <Midl Include="ConptyConnection.idl" />
     <Midl Include="EchoConnection.idl" />
+	<Midl Include="PassThroughConnection.idl" />
     <Midl Include="ITerminalConnection.idl" />
   </ItemGroup>
   <ItemGroup>

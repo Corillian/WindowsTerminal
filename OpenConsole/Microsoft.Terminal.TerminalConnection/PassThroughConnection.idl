@@ -1,0 +1,26 @@
+// Written by Corillian, NOT Microsoft
+// Unfortunately, the WinRT toolchain loudly complains
+// if I create a WinRT class under a namespace other
+// than the default namespace. I think this will likely
+// be something desired by a lot of users and I don't
+// think it makes sense to create a whole new assembly
+// for a single class so... this is why we can't have
+// nice things.
+
+import "ITerminalConnection.idl";
+
+namespace Microsoft.Terminal.TerminalConnection
+{
+    [default_interface] runtimeclass PassThroughConnection : ITerminalConnection
+    {
+        Boolean PassThroughInput;
+
+        PassThroughConnection();
+        PassThroughConnection(Boolean passThroughInput);
+
+        void WriteOutput(String data);
+        void WriteLine(String data);
+        void ClearBufferedData();
+    };
+
+}
