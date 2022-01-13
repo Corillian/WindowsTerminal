@@ -31,39 +31,55 @@ namespace SampleApp
         {
             this.InitializeComponent();
 
-            var allSettings = CascadiaSettings.LoadAll();
-            var defaultProfileGuid = allSettings.GlobalSettings.DefaultProfile;
-            var profiles = allSettings.ActiveProfiles;
-            NewTerminalArgs newTermArgs = null;
-            Profile profile;
-
-            for(int i = 0; i < profiles.Count; ++i)
+            CascadiaSettings allSettings;
+            
+            try
             {
-                profile = profiles[i];
+                allSettings = CascadiaSettings.LoadAll();
+            }
+            catch
+            {
+                allSettings = CascadiaSettings.LoadDefaults();
+            }
 
-                if(profile.Guid == defaultProfileGuid)
+            var defaultProfileGuid = allSettings.GlobalSettings.DefaultProfile;
+            Profile profile = null;
+            Profile profPwsh = null;
+            Profile profWinPwsh = null;
+            Profile profCmd = null;
+
+            foreach(var prof in allSettings.ActiveProfiles)
+            {
+                if(prof.Name.Equals("PowerShell", StringComparison.OrdinalIgnoreCase))
                 {
-                    newTermArgs = new(i);
-                    newTermArgs.Profile = profile.Guid.ToString();
+                    profPwsh = prof;
+                }
+                else if(prof.Name.Equals("Windows PowerShell", StringComparison.OrdinalIgnoreCase))
+                {
+                    profWinPwsh = prof;
+                }
+                else if(prof.Name.Equals("Command Prompt", StringComparison.OrdinalIgnoreCase) || prof.Name.Equals("cmd", StringComparison.OrdinalIgnoreCase))
+                {
+                    profCmd = prof;
+                }
+
+                if(prof.Guid == defaultProfileGuid)
+                {
+                    profile = prof;
                     break;
                 }
             }
 
-            if(newTermArgs == null)
+            if(profile == null)
             {
-                profile = allSettings.ActiveProfiles.FirstOrDefault();
-
-                if(profile != null)
-                {
-                    newTermArgs = new(0);
-                    newTermArgs.Profile = profile.Guid.ToString();
-                }
-                else
-                {
-                    profile = allSettings.AllProfiles.First();
-                    newTermArgs.Profile = profile.Guid.ToString();
-                }
+                profile = profPwsh ?? profWinPwsh ?? profCmd ?? allSettings.ActiveProfiles.FirstOrDefault() ?? allSettings.AllProfiles.First();
             }
+
+            int profileIndex = allSettings.ActiveProfiles?.IndexOf(profile) ?? -1;
+            NewTerminalArgs newTermArgs = profileIndex == -1 ? new() : new(profileIndex)
+            {
+                Profile = profile.Guid.ToString()
+            };
 
             var createTerminalSettings = TerminalSettings.CreateWithNewTerminalArgs(allSettings, newTermArgs, null);
             var terminalSettings = createTerminalSettings.DefaultSettings;

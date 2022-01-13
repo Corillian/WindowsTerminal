@@ -17,6 +17,11 @@ using namespace winrt::Windows::UI::Text::Core;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
+// This is fun
+extern "C" NTSYSAPI NTSTATUS NTAPI RtlGetVersion(
+    _Out_ PRTL_OSVERSIONINFOW lpVersionInformation
+);
+
 namespace winrt::Microsoft::Terminal::Control::implementation
 {
     TSFInputControl::TSFInputControl() :
@@ -33,39 +38,62 @@ namespace winrt::Microsoft::Terminal::Control::implementation
     {
         InitializeComponent();
 
-        // Create a CoreTextEditingContext for since we are acting like a custom edit control
-        auto manager = CoreTextServicesManager::GetForCurrentView();
-        _editContext = manager.CreateEditContext();
+        OSVERSIONINFOEXW info = { 0 };
+        bool canUseCoreTextServices = false;
 
-        // InputPane is manually shown inside of TermControl.
-        _editContext.InputPaneDisplayPolicy(CoreTextInputPaneDisplayPolicy::Manual);
+        info.dwOSVersionInfoSize = sizeof(info);
 
-        // set the input scope to Text because this control is for any text.
-        _editContext.InputScope(CoreTextInputScope::Text);
+        // https://github.com/microsoft/microsoft-ui-xaml/issues/4239
+        if(RtlGetVersion(reinterpret_cast<PRTL_OSVERSIONINFOW>(&info)) == 0)
+        {
+            // CoreTextServicesManager does not work in Win10 due to a bug in the OS as explained in the issue above.
+            // Disappointingly, this still seems to be true for the latest 21H2 v10.0.19044
+            // It does, however, work in Win11 so check to see if we're running Win11 (>= 10.0.22000)
+            canUseCoreTextServices = info.dwMajorVersion > 10
+                || (info.dwMajorVersion == 10 && (info.dwMinorVersion > 0 || info.dwBuildNumber >= 22000));
+        }
 
-        _textRequestedRevoker = _editContext.TextRequested(winrt::auto_revoke, { this, &TSFInputControl::_textRequestedHandler });
+        if(canUseCoreTextServices)
+        {
+            // Create a CoreTextEditingContext for since we are acting like a custom edit control
+            auto manager = CoreTextServicesManager::GetForCurrentView();
+            _editContext = manager.CreateEditContext();
 
-        _selectionRequestedRevoker = _editContext.SelectionRequested(winrt::auto_revoke, { this, &TSFInputControl::_selectionRequestedHandler });
+            // InputPane is manually shown inside of TermControl.
+            _editContext.InputPaneDisplayPolicy(CoreTextInputPaneDisplayPolicy::Manual);
 
-        _focusRemovedRevoker = _editContext.FocusRemoved(winrt::auto_revoke, { this, &TSFInputControl::_focusRemovedHandler });
+            // set the input scope to Text because this control is for any text.
+            _editContext.InputScope(CoreTextInputScope::Text);
 
-        _textUpdatingRevoker = _editContext.TextUpdating(winrt::auto_revoke, { this, &TSFInputControl::_textUpdatingHandler });
+            _textRequestedRevoker = _editContext.TextRequested(winrt::auto_revoke, { this, &TSFInputControl::_textRequestedHandler });
 
-        _selectionUpdatingRevoker = _editContext.SelectionUpdating(winrt::auto_revoke, { this, &TSFInputControl::_selectionUpdatingHandler });
+            _selectionRequestedRevoker = _editContext.SelectionRequested(winrt::auto_revoke, { this, &TSFInputControl::_selectionRequestedHandler });
 
-        _formatUpdatingRevoker = _editContext.FormatUpdating(winrt::auto_revoke, { this, &TSFInputControl::_formatUpdatingHandler });
+            _focusRemovedRevoker = _editContext.FocusRemoved(winrt::auto_revoke, { this, &TSFInputControl::_focusRemovedHandler });
 
-        _layoutRequestedRevoker = _editContext.LayoutRequested(winrt::auto_revoke, { this, &TSFInputControl::_layoutRequestedHandler });
+            _textUpdatingRevoker = _editContext.TextUpdating(winrt::auto_revoke, { this, &TSFInputControl::_textUpdatingHandler });
 
-        _compositionStartedRevoker = _editContext.CompositionStarted(winrt::auto_revoke, { this, &TSFInputControl::_compositionStartedHandler });
+            _selectionUpdatingRevoker = _editContext.SelectionUpdating(winrt::auto_revoke, { this, &TSFInputControl::_selectionUpdatingHandler });
 
-        _compositionCompletedRevoker = _editContext.CompositionCompleted(winrt::auto_revoke, { this, &TSFInputControl::_compositionCompletedHandler });
+            _formatUpdatingRevoker = _editContext.FormatUpdating(winrt::auto_revoke, { this, &TSFInputControl::_formatUpdatingHandler });
+
+            _layoutRequestedRevoker = _editContext.LayoutRequested(winrt::auto_revoke, { this, &TSFInputControl::_layoutRequestedHandler });
+
+            _compositionStartedRevoker = _editContext.CompositionStarted(winrt::auto_revoke, { this, &TSFInputControl::_compositionStartedHandler });
+
+            _compositionCompletedRevoker = _editContext.CompositionCompleted(winrt::auto_revoke, { this, &TSFInputControl::_compositionCompletedHandler });
+        }
     }
 
     // Method Description:
     // - Prepares this TSFInputControl to be removed from the UI hierarchy.
     void TSFInputControl::Close()
     {
+        if(!_editContext)
+        {
+            return;
+        }
+
         // Explicitly disconnect the LayoutRequested handler -- it can cause problems during application teardown.
         // See GH#4159 for more info.
         // Also disconnect compositionCompleted and textUpdating explicitly. It seems to occasionally cause problems if
@@ -116,7 +144,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
     // - <none>
     void TSFInputControl::ClearBuffer()
     {
-        if (!_inputBuffer.empty())
+        if (_editContext && !_inputBuffer.empty())
         {
             TextBlock().Text(L"");
             const auto bufLen = ::base::ClampedNumeric<int32_t>(_inputBuffer.length());

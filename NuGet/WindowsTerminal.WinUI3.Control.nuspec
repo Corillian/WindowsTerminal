@@ -3,7 +3,7 @@
 	<metadata>
 		<!-- Required elements-->
 		<id>WindowsTerminal.WinUI3.Control</id>
-		<version>1.11.3471-beta1</version>
+		<version>1.11.3471-beta2</version>
 		<description>Embeddable Windows Terminal for WinUI3. The root namespace is Microsoft.Terminal.</description>
 		<authors>Keith Newton</authors>
 
