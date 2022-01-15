@@ -18,9 +18,7 @@ using namespace winrt::Windows::UI::Text::Core;
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 // This is fun
-extern "C" NTSYSAPI NTSTATUS NTAPI RtlGetVersion(
-    _Out_ PRTL_OSVERSIONINFOW lpVersionInformation
-);
+extern "C" NTSYSAPI NTSTATUS NTAPI RtlGetVersion(_Out_ PRTL_OSVERSIONINFOW lpVersionInformation);
 
 namespace winrt::Microsoft::Terminal::Control::implementation
 {

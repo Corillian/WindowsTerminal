@@ -15,9 +15,18 @@ Related repositories include:
 * [Cascadia Code Font](https://github.com/Microsoft/Cascadia-Code)
 * [Windows Implementation Libraries](https://github.com/Microsoft/wil/wiki)
 
+## Known Issues
+
+Some of the functionality that Windows Terminal depends on appears to work fine with WinUI3 on Windows 11, but not on Windows 10. As of this writing _all_ known issues are on Windows 10 but _not_ Windows 11.
+
+### Known Windows 10 21H2 (19044) Issues
+
+* `SwapChainPanel` does not supporting compositing with transparency. This means if you set an image as the background for `TermControl` it will not show up.
+* `CoreTextServicesManager` does not work, this prevents the IME panel from being displayed.
+
 ## Cloning and Building
 
-The [Windows Terminal repository](https://github.com/microsoft/terminal) is linked as a submodule and contains its own submodules. To clone this repository make sure you recursively pull all submodules:
+The [Windows Terminal repository](https://github.com/microsoft/terminal) is linked as a submodule. I did this because I only need a subset of the repository, though if it becomes too difficult to maintain I'll consider merging a fork. The Windows Terminal repository also contains its own submodules, so you need to make sure you recursively pull all submodules:
 
 ```
 git clone --recurse-submodules https://github.com/Corillian/WindowsTerminal.git
@@ -34,8 +43,6 @@ Since we aren't having enough fun yet there are additional considerations for th
 This will restore OpenConsole, build the requisite subset of OpenConsole dependencies, and then build the WinUI3 wrappers in `WindowsTerminal.sln`. If OpenConsole fails to build due to errors about hitting the heap limit of the C++ compiler just run `Build.ps1` (without `-restore`) until it stops complaining about heap limits and everything _should_ work. After you do this initial build you can then open `WindowsTerminal.sln` and build via Visual Studio as you normally would. In fact, if `Build.ps1` successfully builds OpenConsole but fails to build `WindowsTerminal.sln` you should try building `WindowsTerminal.sln` in Visual Studio because... welcome to WinRT.
 
 ## Some Thoughts on WinRT
-
-This was my first project with WinRT. I don't know the exact history, you can probably Google it, but for those of you who've never heard of WinRT it's a thing that evolved from the Win8 UWP and C++/WRL stuff which in turn evolved from WPF. Like most everyone on Earth, I refused to ever touch UWP, however WinUI3, which actually looks pretty cool (that's why I did this), is saddled with all of this legacy UWP insanity. The best part of the insanity is that it has a name - WinRT.
 
 If you stay exclusively in the land of C# things don't seem to be too bad. The moment you have to start dealing with C++/WinRT [prepare for hate and discontent](https://docs.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/faq#why-am-i-getting-a--class-not-registered--exception-). The C++/WinRT build toolchain and its C# cousin, CsWinRT, currently seem to be [buggy](https://github.com/microsoft/CsWinRT/issues/756) and [flakey](https://github.com/microsoft/CsWinRT/issues/864). Yes, flakey, as in non-deterministic - sometimes you will build and it'll work - sometimes it won't. What changed? Who knows, but restarting Visual Studio seems to help, except when it doesn't.
 

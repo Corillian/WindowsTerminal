@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "patches", "patches", "{5C59
 	ProjectSection(SolutionItems) = preProject
 		OpenConsole\patches\ActionMap.h = OpenConsole\patches\ActionMap.h
 		OpenConsole\patches\ControlCore.cpp = OpenConsole\patches\ControlCore.cpp
+		OpenConsole\patches\DxRenderer.cpp = OpenConsole\patches\DxRenderer.cpp
 		OpenConsole\patches\KeyChord.cpp = OpenConsole\patches\KeyChord.cpp
 		OpenConsole\patches\KeyChord.h = OpenConsole\patches\KeyChord.h
 		OpenConsole\patches\KeyChord.idl = OpenConsole\patches\KeyChord.idl
