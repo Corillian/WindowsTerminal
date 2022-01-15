@@ -3,7 +3,7 @@
 	<metadata>
 		<!-- Required elements-->
 		<id>WindowsTerminal.WinUI3.Settings.Model</id>
-		<version>1.11.3471-beta3</version>
+		<version>1.11.3471-beta4</version>
 		<description>A WinUI3 library for reading and writing Windows Terminal settings. The root namespace is Microsoft.Terminal.Settings.Model.</description>
 		<authors>Keith Newton</authors>
 
@@ -13,7 +13,7 @@
 		<tags>Windows;Terminal;WinUI;XAML</tags>
 
 		<dependencies>
-			<dependency id="WindowsTerminal.WinUI3.Control" version="1.11.3471-beta3"/>
+			<dependency id="WindowsTerminal.WinUI3.Control" version="1.11.3471-beta4"/>
 		</dependencies>
 	</metadata>
 	
