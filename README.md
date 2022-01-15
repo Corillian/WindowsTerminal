@@ -23,7 +23,7 @@ Some of the functionality that Windows Terminal depends on appears to work fine 
 
 * `SwapChainPanel` does not support compositing with transparency. This means if you set an image as the background for `TermControl` it will not show up.
 * `CoreTextServicesManager` does not work, this prevents the IME panel from being displayed.
-* SampleApp fails to start conhost.exe or it exits immediately after startup. If I remember correctly, this should occur when [CreatePseudoConsole](https://docs.microsoft.com/en-us/windows/console/createpseudoconsole) is called. Conhost.exe failing causes the child console process to exit during startup. I suspect this might be due to packaged app/msix trust working differently on Win10 than Win11 but that's purely speculation at the moment.
+* SampleApp fails to start conhost.exe or it exits immediately after startup. If I remember correctly, conhost.exe should be spawned when [CreatePseudoConsole](https://docs.microsoft.com/en-us/windows/console/createpseudoconsole) is called. Conhost.exe failing causes the child console process to exit during startup. I suspect this might be due to packaged app/msix trust working differently on Win10 than Win11 but that's purely speculation at the moment.
 
 ## Cloning and Building
 
