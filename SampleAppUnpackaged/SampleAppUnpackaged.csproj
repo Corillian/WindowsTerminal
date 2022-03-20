@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <UseWinUI>true</UseWinUI>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
+    <RuntimeIdentifiers>win10-x86;win10-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SampleApp\SampleApp\SampleApp.csproj">
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+
+	<Target Name="CopySampleAppDll" AfterTargets="Build;Rebuild">
+		<CreateItem Include="$(ProjectDir)../SampleApp/SampleApp/bin/$(Platform)/$(Configuration)/$(TargetFramework)/*.dll">
+			<Output TaskParameter="Include" ItemName="DllsToCopy" />
+		</CreateItem>
+
+		<Copy SourceFiles="@(DllsToCopy)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="false" />
+
+		<CreateItem Include="$(ProjectDir)../SampleApp/SampleApp/bin/$(Platform)/$(Configuration)/$(TargetFramework)/*.pri">
+			<Output TaskParameter="Include" ItemName="PriToCopy" />
+		</CreateItem>
+
+		<Copy SourceFiles="@(PriToCopy)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="false" />
+
+		<!-- We need to overwrite our .pri with the properly merged SampleApp.pri -->
+		<Copy SourceFiles="$(TargetDir)SampleApp.pri" DestinationFiles="$(TargetDir)SampleAppUnpackaged.pri" SkipUnchangedFiles="false" />
+	</Target>
+</Project>
