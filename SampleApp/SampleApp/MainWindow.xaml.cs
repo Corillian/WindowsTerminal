@@ -104,7 +104,27 @@ namespace SampleApp
                 UnfocusedAppearance = childSettings.UnfocusedSettings // It is okay for the unfocused settings to be null
             };
 
+            term.OpenHyperlink += OnTerminal_OpenHyperlink;
+
             _rootPanel.Children.Add(term);
+        }
+
+        private void OnTerminal_OpenHyperlink(object sender, OpenHyperlinkEventArgs args)
+        {
+            var procInfo = new ProcessStartInfo(args.Uri)
+            {
+                Verb = "open",
+                UseShellExecute = true,
+            };
+
+            try
+            {
+                Process.Start(procInfo)?.Dispose();
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
     }
 }

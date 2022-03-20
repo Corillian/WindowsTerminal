@@ -16,7 +16,7 @@
 #include "../../external/terminal/src/renderer/base/Renderer.hpp"
 #include "../../external/terminal/src/renderer/dx/DxRenderer.hpp"
 #include "../../external/terminal/src/renderer/uia/UiaRenderer.hpp"
-#include "../../external/terminal/src/cascadia/TerminalCore/Terminal.hpp"
+#include "../TerminalCore/Terminal.hpp"
 #include "../../external/terminal/src/buffer/out/search.h"
 #include <cppwinrt_utils.h>
 

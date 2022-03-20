@@ -1135,7 +1135,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
             _interactivity.PointerPressed(TermControl::GetPressedMouseButtons(point),
                 TermControl::GetPointerUpdateKind(point),
                 point.Timestamp(),
-                winrt::Microsoft::Terminal::Core::ControlKeyStates{ static_cast<uint32_t>(args.KeyModifiers()) },
+                ControlKeyStates{ args.KeyModifiers() },
                 _toTerminalOrigin(cursorPosition));
         }
 
@@ -1173,7 +1173,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
         {
             _interactivity.PointerMoved(TermControl::GetPressedMouseButtons(point),
                 TermControl::GetPointerUpdateKind(point),
-                winrt::Microsoft::Terminal::Core::ControlKeyStates{ static_cast<uint32_t>(args.KeyModifiers()) },
+                ControlKeyStates{ args.KeyModifiers() },
                 _focused,
                 pixelPosition,
                 _pointerPressedInBounds);
@@ -1252,7 +1252,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
         {
             _interactivity.PointerReleased(TermControl::GetPressedMouseButtons(point),
                 TermControl::GetPointerUpdateKind(point),
-                winrt::Microsoft::Terminal::Core::ControlKeyStates{ static_cast<uint32_t>(args.KeyModifiers()) },
+                ControlKeyStates{ args.KeyModifiers() },
                 pixelPosition);
         }
         else if(type == Microsoft::UI::Input::PointerDeviceType::Touch)
@@ -1291,7 +1291,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
             return;
         }
 
-        auto result = _interactivity.MouseWheel(winrt::Microsoft::Terminal::Core::ControlKeyStates{ static_cast<uint32_t>(args.KeyModifiers()) },
+        auto result = _interactivity.MouseWheel(ControlKeyStates{ args.KeyModifiers() },
             point.Properties().MouseWheelDelta(),
             _toTerminalOrigin(point.Position()),
             TermControl::GetPressedMouseButtons(point));

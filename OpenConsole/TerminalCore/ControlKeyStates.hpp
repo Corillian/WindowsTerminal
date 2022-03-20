@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <winrt/Windows.System.h>
+
 // All the modifiers in this file EXCEPT the win key come from
 // https://docs.microsoft.com/en-us/windows/console/key-event-record-str
 //
