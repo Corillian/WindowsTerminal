@@ -13,21 +13,14 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Terminal.cpp" />
     <ClCompile Include="TerminalApi.cpp" />
-    <ClCompile Include="TerminalDispatch.cpp" />
-    <ClCompile Include="TerminalDispatchGraphics.cpp" />
     <ClCompile Include="terminalrenderdata.cpp" />
     <ClCompile Include="TerminalSelection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="ControlKeyStates.hpp" />
-    <ClInclude Include="ITerminalApi.hpp" />
     <ClInclude Include="ITerminalInput.hpp" />
     <ClInclude Include="Terminal.hpp" />
-    <ClInclude Include="TerminalDispatch.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
@@ -35,5 +28,8 @@
   <ItemGroup>
     <Midl Include="ICoreAppearance.idl" />
     <Midl Include="ICoreSettings.idl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

@@ -19,3 +19,5 @@
 #include <Windows.h>
 
 #include <til.h>
+
+#include <cppwinrt_utils.h>

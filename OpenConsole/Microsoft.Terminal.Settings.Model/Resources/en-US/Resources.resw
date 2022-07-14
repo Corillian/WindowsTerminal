@@ -127,7 +127,7 @@
     <value>Split Pane...</value>
   </data>
   <data name="ApplicationDisplayNameUnpackaged" xml:space="preserve">
-    <value>Windows Terminal (Unpackaged)</value>
+    <value>Terminal (Unpackaged)</value>
     <comment>This display name is used when the application's name cannot be determined</comment>
   </data>
   <data name="ApplicationVersionUnknown" xml:space="preserve">
@@ -177,6 +177,9 @@
   </data>
   <data name="CloseWindowCommandKey" xml:space="preserve">
     <value>Close window</value>
+  </data>
+  <data name="OpenSystemMenuCommandKey" xml:space="preserve">
+    <value>Open system menu</value>
   </data>
   <data name="CommandPromptDisplayName" xml:space="preserve">
     <value>Command Prompt</value>
@@ -254,6 +257,12 @@
   </data>
   <data name="MoveFocusFirstPane" xml:space="preserve">
     <value>Move focus to the first pane</value>
+  </data>
+  <data name="MoveFocusParentPane" xml:space="preserve">
+    <value>Move focus to the parent pane</value>
+  </data>
+  <data name="MoveFocusChildPane" xml:space="preserve">
+    <value>Move focus to the child pane</value>
   </data>
   <data name="SwapPaneCommandKey" xml:space="preserve">
     <value>Swap pane</value>
@@ -405,8 +414,26 @@
     <value>Toggle focus mode</value>
     <comment>"Focus mode" is a mode with minimal UI elements, for a distraction-free experience</comment>
   </data>
+  <data name="EnableFocusModeCommandKey" xml:space="preserve">
+    <value>Enable focus mode</value>
+  </data>
+  <data name="DisableFocusModeCommandKey" xml:space="preserve">
+    <value>Disable focus mode</value>
+  </data>
   <data name="ToggleFullscreenCommandKey" xml:space="preserve">
     <value>Toggle fullscreen</value>
+  </data>
+  <data name="EnableFullScreenCommandKey" xml:space="preserve">
+    <value>Enable fullscreen</value>
+  </data>
+  <data name="DisableFullScreenCommandKey" xml:space="preserve">
+    <value>Disable fullscreen</value>
+  </data>
+  <data name="EnableMaximizedCommandKey" xml:space="preserve">
+    <value>Maximize window</value>
+  </data>
+  <data name="DisableMaximizedCommandKey" xml:space="preserve">
+    <value>Restore maximized window</value>
   </data>
   <data name="ToggleSplitOrientationCommandKey" xml:space="preserve">
     <value>Toggle pane split orientation</value>
@@ -424,7 +451,7 @@
     <value>Break into the debugger</value>
   </data>
   <data name="OpenSettingsUICommandKey" xml:space="preserve">
-    <value>Open Settings...</value>
+    <value>Open settings...</value>
   </data>
   <data name="RenameWindowCommandKey" xml:space="preserve">
     <value>Rename window to "{0}"</value>
@@ -437,14 +464,34 @@
     <value>Rename window...</value>
   </data>
   <data name="GlobalSummonCommandKey" xml:space="preserve">
-    <value>Summon the Terminal window</value>
+    <value>Show/Hide the Terminal window</value>
   </data>
   <data name="QuakeModeCommandKey" xml:space="preserve">
-    <value>Summon Quake window</value>
+    <value>Show/Hide Quake window</value>
+    <comment>Quake is a well-known computer game and isn't related to earthquakes, etc. See https://en.wikipedia.org/wiki/Quake_(video_game)</comment>
   </data>
   <data name="FocusPaneCommandKey" xml:space="preserve">
     <value>Focus pane {0}</value>
     <comment>{0} will be replaced with a user-specified number</comment>
+  </data>
+  <data name="ExportBufferToPathCommandKey" xml:space="preserve">
+    <value>Export text to {0}</value>
+    <comment>{0} will be replaced with a user-specified file path</comment>
+  </data>
+  <data name="ExportBufferCommandKey" xml:space="preserve">
+    <value>Export text</value>
+  </data>
+  <data name="ClearAllCommandKey" xml:space="preserve">
+    <value>Clear buffer</value>
+    <comment>A command to clear the entirety of the Terminal output buffer</comment>
+  </data>
+  <data name="ClearViewportCommandKey" xml:space="preserve">
+    <value>Clear viewport</value>
+    <comment>A command to clear the active viewport of the Terminal</comment>
+  </data>
+  <data name="ClearScrollbackCommandKey" xml:space="preserve">
+    <value>Clear scrollback</value>
+    <comment>A command to clear the part of the buffer above the viewport</comment>
   </data>
   <data name="InboxWindowsConsoleAuthor" xml:space="preserve">
     <value>Microsoft Corporation</value>
@@ -453,5 +500,29 @@
   <data name="InboxWindowsConsoleName" xml:space="preserve">
     <value>Windows Console Host</value>
     <comment>Name describing the usage of the classic windows console as the terminal UI. (`conhost.exe`)</comment>
+  </data>
+  <data name="QuitCommandKey" xml:space="preserve">
+    <value>Quit the Terminal</value>
+  </data>
+  <data name="SetOpacityParentCommandName" xml:space="preserve">
+    <value>Set background opacity...</value>
+  </data>
+  <data name="IncreaseOpacityCommandKey" xml:space="preserve">
+    <value>Increase background opacity by {0}%</value>
+    <comment>A command to change how transparent the background of the window is</comment>
+  </data>
+  <data name="DecreaseOpacityCommandKey" xml:space="preserve">
+    <value>Decrease background opacity by {0}%</value>
+    <comment>A command to change how transparent the background of the window is</comment>
+  </data>
+  <data name="AdjustOpacityCommandKey" xml:space="preserve">
+    <value>Set background opacity to {0}%</value>
+    <comment>A command to change how transparent the background of the window is</comment>
+  </data>
+  <data name="RestoreLastClosedCommandKey" xml:space="preserve">
+    <value>Restore the last closed pane or tab</value>
+  </data>
+  <data name="SelectAllCommandKey" xml:space="preserve">
+    <value>Select all text</value>
   </data>
 </root>

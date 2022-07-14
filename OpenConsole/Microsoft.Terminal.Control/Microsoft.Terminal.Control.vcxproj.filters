@@ -36,6 +36,8 @@
     <ClInclude Include="XamlUiaTextRange.h" />
     <ClInclude Include="TermControlAutomationPeer.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ControlAppearance.h" />
+    <ClInclude Include="ControlSettings.h" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="KeyChord.idl" />

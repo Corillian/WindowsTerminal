@@ -46,7 +46,7 @@ inline winrt::Windows::UI::Color toWinUIColor(const til::color clr) noexcept
     return { clr.a, clr.r, clr.g, clr.b };
 }
 
-inline winrt::Microsoft::Terminal::Core::Point toTerminalPoint(const til::point& pt) noexcept
-{
-    return { static_cast<int32_t>(pt.x()), static_cast<int32_t>(pt.y()) };
-}
+//inline winrt::Microsoft::Terminal::Core::Point toTerminalPoint(const til::point& pt) noexcept
+//{
+//    return { static_cast<int32_t>(pt.x()), static_cast<int32_t>(pt.y()) };
+//}

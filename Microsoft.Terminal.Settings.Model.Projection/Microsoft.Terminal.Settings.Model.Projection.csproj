@@ -25,8 +25,8 @@
   </PropertyGroup>
 	
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="1.4.1" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="1.6.4" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -45,16 +45,22 @@
   <ItemGroup Condition="'$(Platform)' != 'x86' And '$(Platform)' != 'AnyCPU'">
 	<CsWinRTInputs Include="$(BuildOutDir)TerminalCore\bin\Microsoft.Terminal.Core.winmd" />
     <CsWinRTInputs Include="$(BuildOutDir)Microsoft.Terminal.Control\bin\Microsoft.Terminal.Control.winmd" />
+	<CsWinRTInputs Include="$(BuildOutDir)Microsoft.Terminal.Settings.Model\bin\Microsoft.Terminal.Settings.Model.winmd" />
+	<Content Include="$(BuildOutDir)Microsoft.Terminal.Settings.Model\bin\Microsoft.Terminal.Settings.Model.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 	
   <ItemGroup Condition="'$(Platform)' == 'x86'">
 	<CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'Win32', '$(Configuration)', 'TerminalCore', 'bin'))Microsoft.Terminal.Core.winmd" />
     <CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'Win32', '$(Configuration)', 'Microsoft.Terminal.Control', 'bin'))Microsoft.Terminal.Control.winmd" />
+	<CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'Win32', '$(Configuration)', 'Microsoft.Terminal.Settings.Model', 'bin'))Microsoft.Terminal.Settings.Model.winmd" />
+	<Content Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'Win32', '$(Configuration)', 'Microsoft.Terminal.Settings.Model', 'bin'))Microsoft.Terminal.Settings.Model.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 	
   <ItemGroup Condition="'$(Platform)' == 'AnyCPU'">
 	<CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'x64', '$(Configuration)', 'TerminalCore', 'bin'))Microsoft.Terminal.Core.winmd" />
     <CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'x64', '$(Configuration)', 'Microsoft.Terminal.Control', 'bin'))Microsoft.Terminal.Control.winmd" />
+	<CsWinRTInputs Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'x64', '$(Configuration)', 'Microsoft.Terminal.Settings.Model', 'bin'))Microsoft.Terminal.Settings.Model.winmd" />
+	<Content Include="$([MSBuild]::NormalizeDirectory('$(SolutionDir)', '_build', 'x64', '$(Configuration)', 'Microsoft.Terminal.Settings.Model', 'bin'))Microsoft.Terminal.Settings.Model.dll" Visible="false" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 	
   <ItemGroup>

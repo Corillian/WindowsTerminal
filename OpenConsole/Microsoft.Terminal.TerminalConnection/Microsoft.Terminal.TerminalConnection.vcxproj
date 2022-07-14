@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.props" Condition="Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.props')" />
-  <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.props')" />
-  <Import Project="..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.props" Condition="Exists('..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.props')" />
+  <Import Project="..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.1\build\Microsoft.Windows.SDK.BuildTools.props" Condition="Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.1\build\Microsoft.Windows.SDK.BuildTools.props')" />
+  <Import Project="..\..\packages\Microsoft.WindowsAppSDK.1.1.0\build\native\Microsoft.WindowsAppSDK.props" Condition="Exists('..\..\packages\Microsoft.WindowsAppSDK.1.1.0\build\native\Microsoft.WindowsAppSDK.props')" />
+  <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.220608.4\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.220608.4\build\native\Microsoft.Windows.CppWinRT.props')" />
   <PropertyGroup Label="Globals">
     <CppWinRTOptimized>true</CppWinRTOptimized>
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
@@ -95,30 +95,30 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;CONPTY_IMPEXP=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\src\winconpty;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\src\winconpty;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\src\winconpty;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">fmt.lib;conptylib.lib;ConTypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">fmt.lib;conptylib.lib;ConTypes.lib;ntdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Link>
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fmt.lib;conptylib.lib;ConTypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fmt.lib;conptylib.lib;ConTypes.lib;ntdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Link>
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fmt.lib;conptylib.lib;ConTypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fmt.lib;conptylib.lib;ConTypes.lib;ntdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;CONPTY_IMPEXP=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\src\winconpty;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\src\winconpty;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\..\..\external\terminal\src\types\inc;$(ProjectDir)\..\..\external\terminal\src\cascadia\inc;$(ProjectDir)\..\WinRTUtils\inc;$(ProjectDir)\..\..\external\terminal\dep;$(ProjectDir)\..\..\external\terminal\oss\interval_tree;$(ProjectDir)\..\..\external\terminal\oss\dynamic_bitset;$(ProjectDir)\..\..\external\terminal\oss\libpopcnt;$(ProjectDir)\..\..\external\terminal\oss\fmt\include;$(ProjectDir)\..\..\external\terminal\oss\boost\boost_1_73_0;$(ProjectDir)\..\..\external\terminal\oss\chromium;$(ProjectDir)\..\..\external\terminal\dep\gsl\include;$(ProjectDir)\..\..\external\terminal\src\inc;$(ProjectDir)\..\..\external\terminal\src\winconpty;$(ProjectDir)\..\..\external\terminal\obj\$(Platform)\$(Configuration)\OpenConsoleProxy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -126,9 +126,9 @@
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\..\..\external\terminal\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">fmt.lib;conptylib.lib;ConTypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">fmt.lib;conptylib.lib;ConTypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fmt.lib;conptylib.lib;ConTypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">fmt.lib;conptylib.lib;ConTypes.lib;ntdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">fmt.lib;conptylib.lib;ConTypes.lib;ntdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fmt.lib;conptylib.lib;ConTypes.lib;ntdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -149,7 +149,7 @@
       <DependentUpon>EchoConnection.idl</DependentUpon>
     </ClInclude>
     <ClInclude Include="PassThroughConnection.h">
-	  <DependentUpon>PassThroughConnection.idl</DependentUpon>
+      <DependentUpon>PassThroughConnection.idl</DependentUpon>
     </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
@@ -170,7 +170,7 @@
     </ClCompile>
     <ClCompile Include="init.cpp" />
     <ClCompile Include="PassThroughConnection.cpp">
-	  <DependentUpon>PassThroughConnection.idl</DependentUpon>
+      <DependentUpon>PassThroughConnection.idl</DependentUpon>
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -178,8 +178,8 @@
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Microsoft.Terminal.TerminalConnection.def" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt">
@@ -191,7 +191,7 @@
     <Midl Include="ConnectionInformation.idl" />
     <Midl Include="ConptyConnection.idl" />
     <Midl Include="EchoConnection.idl" />
-	<Midl Include="PassThroughConnection.idl" />
+    <Midl Include="PassThroughConnection.idl" />
     <Midl Include="ITerminalConnection.idl" />
   </ItemGroup>
   <ItemGroup>
@@ -208,28 +208,23 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.targets" Condition="Exists('..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.targets')" />
-    <Import Project="..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.211019.2\build\native\Microsoft.Windows.ImplementationLibrary.targets" Condition="Exists('..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.211019.2\build\native\Microsoft.Windows.ImplementationLibrary.targets')" />
-    <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.targets')" />
-    <Import Project="..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.targets" Condition="Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.targets')" />
+    <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.220608.4\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.220608.4\build\native\Microsoft.Windows.CppWinRT.targets')" />
+    <Import Project="..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.220201.1\build\native\Microsoft.Windows.ImplementationLibrary.targets" Condition="Exists('..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.220201.1\build\native\Microsoft.Windows.ImplementationLibrary.targets')" />
+    <Import Project="..\..\packages\Microsoft.WindowsAppSDK.1.1.0\build\native\Microsoft.WindowsAppSDK.targets" Condition="Exists('..\..\packages\Microsoft.WindowsAppSDK.1.1.0\build\native\Microsoft.WindowsAppSDK.targets')" />
+    <Import Project="..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.1\build\Microsoft.Windows.SDK.BuildTools.targets" Condition="Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.1\build\Microsoft.Windows.SDK.BuildTools.targets')" />
   </ImportGroup>
+  <Import Project="..\..\packages\vcpkg-cpprestsdk.2.10.14\build\native\vcpkg-cpprestsdk.targets" Condition="Exists('..\..\packages\vcpkg-cpprestsdk.2.10.14\build\native\vcpkg-cpprestsdk.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.WindowsAppSDK.1.0.0\build\native\Microsoft.WindowsAppSDK.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.211019.2\build\native\Microsoft.Windows.ImplementationLibrary.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.211019.2\build\native\Microsoft.Windows.ImplementationLibrary.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22000.196\build\Microsoft.Windows.SDK.BuildTools.targets'))" />
-  </Target>
-  <Import Project="$(ProjectDir)\..\..\external\terminal\packages\vcpkg-cpprestsdk.2.10.14\build\native\vcpkg-cpprestsdk.targets" Condition="Exists('$(ProjectDir)\..\..\external\terminal\packages\vcpkg-cpprestsdk.2.10.14\build\native\vcpkg-cpprestsdk.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(ProjectDir)\..\..\external\terminal\packages\vcpkg-cpprestsdk.2.10.14\build\native\vcpkg-cpprestsdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(ProjectDir)\..\..\external\terminal\packages\vcpkg-cpprestsdk.2.10.14\build\native\vcpkg-cpprestsdk.targets'))" />
+    <Error Condition="!Exists('..\..\packages\vcpkg-cpprestsdk.2.10.14\build\native\vcpkg-cpprestsdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\vcpkg-cpprestsdk.2.10.14\build\native\vcpkg-cpprestsdk.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.220608.4\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.220608.4\build\native\Microsoft.Windows.CppWinRT.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.220608.4\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.220608.4\build\native\Microsoft.Windows.CppWinRT.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.220201.1\build\native\Microsoft.Windows.ImplementationLibrary.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.ImplementationLibrary.1.0.220201.1\build\native\Microsoft.Windows.ImplementationLibrary.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.WindowsAppSDK.1.1.0\build\native\Microsoft.WindowsAppSDK.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.WindowsAppSDK.1.1.0\build\native\Microsoft.WindowsAppSDK.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.WindowsAppSDK.1.1.0\build\native\Microsoft.WindowsAppSDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.WindowsAppSDK.1.1.0\build\native\Microsoft.WindowsAppSDK.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.1\build\Microsoft.Windows.SDK.BuildTools.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.1\build\Microsoft.Windows.SDK.BuildTools.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.1\build\Microsoft.Windows.SDK.BuildTools.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.1\build\Microsoft.Windows.SDK.BuildTools.targets'))" />
   </Target>
 </Project>

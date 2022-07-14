@@ -1,4 +1,11 @@
-﻿#pragma once
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+//
+// pch.h
+// Header for platform projection include files
+//
+
+#pragma once
 
 #define WIN32_LEAN_AND_MEAN
 #define NOMCX
@@ -22,4 +29,9 @@
 
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
+#include <winrt/Windows.System.h>
+
+#include <shlobj.h>
+#include <shobjidl_core.h>
+
 #include <wil/cppwinrt_helpers.h>

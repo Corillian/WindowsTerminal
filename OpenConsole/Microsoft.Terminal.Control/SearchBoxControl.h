@@ -29,15 +29,15 @@ namespace winrt::Microsoft::Terminal::Control::implementation
     {
         SearchBoxControl();
 
-        void TextBoxKeyDown(winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
+        void TextBoxKeyDown(const winrt::Windows::Foundation::IInspectable& /*sender*/, const winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs& e);
 
         void SetFocusOnTextbox();
-        void PopulateTextbox(winrt::hstring const& text);
+        void PopulateTextbox(const winrt::hstring& text);
         bool ContainsFocus();
 
-        void GoBackwardClicked(winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& /*e*/);
-        void GoForwardClicked(winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& /*e*/);
-        void CloseClick(winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+        void GoBackwardClicked(const winrt::Windows::Foundation::IInspectable& /*sender*/, const winrt::Microsoft::UI::Xaml::RoutedEventArgs& /*e*/);
+        void GoForwardClicked(const winrt::Windows::Foundation::IInspectable& /*sender*/, const winrt::Microsoft::UI::Xaml::RoutedEventArgs& /*e*/);
+        void CloseClick(const winrt::Windows::Foundation::IInspectable& /*sender*/, const winrt::Microsoft::UI::Xaml::RoutedEventArgs& e);
 
         WINRT_CALLBACK(Search, SearchHandler);
         TYPED_EVENT(Closed, Control::SearchBoxControl, Microsoft::UI::Xaml::RoutedEventArgs);
@@ -47,14 +47,12 @@ namespace winrt::Microsoft::Terminal::Control::implementation
 
         bool _GoForward();
         bool _CaseSensitive();
-        void _KeyDownHandler(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
-        void _CharacterHandler(winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Microsoft::UI::Xaml::Input::CharacterReceivedRoutedEventArgs const& e);
+        void _KeyDownHandler(const winrt::Windows::Foundation::IInspectable& sender, const winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs& e);
+        void _CharacterHandler(const winrt::Windows::Foundation::IInspectable& /*sender*/, const winrt::Microsoft::UI::Xaml::Input::CharacterReceivedRoutedEventArgs& e);
     };
 }
 
 namespace winrt::Microsoft::Terminal::Control::factory_implementation
 {
-    struct SearchBoxControl : SearchBoxControlT<SearchBoxControl, implementation::SearchBoxControl>
-    {
-    };
+    BASIC_FACTORY(SearchBoxControl);
 }

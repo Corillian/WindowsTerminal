@@ -23,12 +23,31 @@ param(
     [string] $platform = 'x64',
 
     [Parameter(Mandatory = $true, ParameterSetName = 'Pack')]
-    [switch] $pack
+    [switch] $pack,
+
+    [Parameter(Mandatory = $true, ParameterSetName = 'MSBuildInfo')]
+    [switch] $msbuildinfo
 )
+
+function RestorePackages {
+    $rootDir = [System.IO.Path]::GetDirectoryName($PSCommandPath)
+    $openConsolePath = [System.IO.Path]::Combine($rootDir, 'external', 'terminal')
+    $openConsoleNuget = [System.IO.Path]::Combine($rootDir, 'external', 'terminal', 'dep', 'nuget', 'nuget.exe')
+    $openConsolePackages = [System.IO.Path]::Combine($rootDir, 'external', 'terminal', 'dep', 'nuget', 'packages.config')
+    $openConsolePackagesDest = [System.IO.Path]::Combine($rootDir, 'external', 'terminal', 'packages', 'packages.config')
+
+    & $openConsoleNuget install $openConsolePackages -SolutionDirectory $openConsolePath
+
+    Copy-Item -Path $openConsolePackages -Destination $openConsolePackagesDest -Force
+
+    & $openConsoleNuget install OpenConsole\packages.config -SolutionDirectory . -Source https://pkgs.dev.azure.com/ms/terminal/_packaging/TerminalDependencies/nuget/v3/index.json
+}
 
 $rootDir = [System.IO.Path]::GetDirectoryName($PSCommandPath)
 $openConsolePath = [System.IO.Path]::Combine($rootDir, 'external', 'terminal')
 $openConsoleSolution = [System.IO.Path]::Combine($openConsolePath, 'OpenConsole.sln')
+$openConsoleNuget = [System.IO.Path]::Combine($rootDir, 'external', 'terminal', 'dep', 'nuget.exe')
+$openConsolePackages = [System.IO.Path]::Combine($rootDir, 'external', 'terminal', 'dep', 'packages.config')
 $windowsTerminalSolution = [System.IO.Path]::Combine($rootDir, 'WindowsTerminal.sln')
 $buildPath = [System.IO.Path]::Combine($rootDir, '_build')
 
@@ -63,6 +82,12 @@ if([System.IO.File]::Exists($msbuild) -eq $false)
 }
 
 Write-Host "Found MSBuild at $msbuild"
+Write-Host "OpenConsole solution is at $openConsoleSolution"
+
+if($msbuildinfo -eq $true)
+{
+    Exit 0
+}
 
 if($pack -eq $true)
 {
@@ -79,9 +104,7 @@ if($pack -eq $true)
 
     if($restore -eq $true)
     {
-        & $msbuild $openConsoleSolution -p:Configuration=Release -p:Platform=x64 -p:RestorePackagesConfig=true -t:Restore
-        & $msbuild $openConsoleSolution -p:Configuration=Release -p:Platform=x86 -p:RestorePackagesConfig=true -t:Restore
-        & $msbuild $openConsoleSolution -p:Configuration=Release -p:Platform=arm64 -p:RestorePackagesConfig=true -t:Restore
+        RestorePackages
 
         & $windowsTerminalSolution $openConsoleSolution -p:Configuration=Release -p:Platform=x64 -p:RestorePackagesConfig=true -t:Restore
         & $windowsTerminalSolution $openConsoleSolution -p:Configuration=Release -p:Platform=x86 -p:RestorePackagesConfig=true -t:Restore
@@ -94,7 +117,7 @@ if($pack -eq $true)
         {
             Write-Host "Building OpenConsole.sln Release|x64"
 
-            & $msbuild $openConsoleSolution -p:Configuration=Release -p:Platform=x64 -p:RestorePackagesConfig=true -t:Conhost\OpenConsoleProxy '-t:Shared\Virtual Terminal\TerminalInput' -t:Shared\Rendering\RendererUia -t:Terminal\TerminalConnection -t:Terminal\Control\TerminalCore -t:Terminal\Settings\Microsoft_Terminal_Settings_Model
+            & $msbuild $openConsoleSolution -p:Configuration=Release -p:Platform=x64 -p:RestorePackagesConfig=true -t:_Dependencies\fmt -t:Conhost\OpenConsoleProxy -t:Conhost\PropertiesLibrary '-t:Shared\Virtual Terminal\TerminalInput' '-t:Shared\Virtual Terminal\TerminalParser' '-t:Shared\Virtual Terminal\TerminalAdapter' -t:Shared\Rendering\RendererBase -t:Shared\Rendering\RendererUia -t:Shared\Rendering\RendererDx -t:Shared\Rendering\RendererAtlas -t:Shared\Buffer\BufferOut -t:Conhost\winconpty_LIB -t:Shared\Types
 
             if($LastExitCode -ne 0)
             {
@@ -103,7 +126,7 @@ if($pack -eq $true)
 
             Write-Host "Building OpenConsole.sln Release|x86"
 
-            & $msbuild $openConsoleSolution -p:Configuration=Release -p:Platform=x86 -p:RestorePackagesConfig=true -t:Conhost\OpenConsoleProxy '-t:Shared\Virtual Terminal\TerminalInput' -t:Shared\Rendering\RendererUia -t:Terminal\TerminalConnection -t:Terminal\Control\TerminalCore -t:Terminal\Settings\Microsoft_Terminal_Settings_Model
+            & $msbuild $openConsoleSolution -p:Configuration=Release -p:Platform=x86 -p:RestorePackagesConfig=true -t:_Dependencies\fmt -t:Conhost\OpenConsoleProxy -t:Conhost\PropertiesLibrary '-t:Shared\Virtual Terminal\TerminalInput' '-t:Shared\Virtual Terminal\TerminalParser' '-t:Shared\Virtual Terminal\TerminalAdapter' -t:Shared\Rendering\RendererBase -t:Shared\Rendering\RendererUia -t:Shared\Rendering\RendererDx -t:Shared\Rendering\RendererAtlas -t:Shared\Buffer\BufferOut -t:Conhost\winconpty_LIB -t:Shared\Types
 
             if($LastExitCode -ne 0)
             {
@@ -112,7 +135,7 @@ if($pack -eq $true)
 
             Write-Host "Building OpenConsole.sln Release|arm64"
 
-            & $msbuild $openConsoleSolution -p:Configuration=Release -p:Platform=arm64 -p:RestorePackagesConfig=true -t:Conhost\OpenConsoleProxy '-t:Shared\Virtual Terminal\TerminalInput' -t:Shared\Rendering\RendererUia -t:Terminal\TerminalConnection -t:Terminal\Control\TerminalCore -t:Terminal\Settings\Microsoft_Terminal_Settings_Model
+            & $msbuild $openConsoleSolution -p:Configuration=Release -p:Platform=arm64 -p:RestorePackagesConfig=true -t:_Dependencies\fmt -t:Conhost\OpenConsoleProxy -t:Conhost\PropertiesLibrary '-t:Shared\Virtual Terminal\TerminalInput' '-t:Shared\Virtual Terminal\TerminalParser' '-t:Shared\Virtual Terminal\TerminalAdapter' -t:Shared\Rendering\RendererBase -t:Shared\Rendering\RendererUia -t:Shared\Rendering\RendererDx -t:Shared\Rendering\RendererAtlas -t:Shared\Buffer\BufferOut -t:Conhost\winconpty_LIB -t:Shared\Types
 
             if($LastExitCode -ne 0)
             {
@@ -226,9 +249,11 @@ else
     {
         if($skipdeps -eq $false)
         {
-            & $msbuild $openConsoleSolution -p:Configuration=$configuration -p:Platform=$platform -p:RestorePackagesConfig=true -t:Restore
+            RestorePackages
         }
     
+        Write-Host "Restoring WindowsTerminal.sln $configuration|$platform"
+
         & $msbuild $windowsTerminalSolution -p:Configuration=$configuration -p:Platform=$platform -p:RestorePackagesConfig=true -t:Restore
     }
 
@@ -236,7 +261,7 @@ else
     {
         if($skipdeps -eq $false)
         {
-            & $msbuild $openConsoleSolution -p:Configuration=$configuration -p:Platform=$platform -p:RestorePackagesConfig=true -t:Conhost\OpenConsoleProxy '-t:Shared\Virtual Terminal\TerminalInput' -t:Shared\Rendering\RendererUia -t:Terminal\TerminalConnection -t:Terminal\Control\TerminalCore -t:Terminal\Settings\Microsoft_Terminal_Settings_Model
+            & $msbuild $openConsoleSolution -p:Configuration=$configuration -p:Platform=$platform -p:RestorePackagesConfig=true -t:_Dependencies\fmt -t:Conhost\OpenConsoleProxy -t:Conhost\PropertiesLibrary '-t:Shared\Virtual Terminal\TerminalInput' '-t:Shared\Virtual Terminal\TerminalParser' '-t:Shared\Virtual Terminal\TerminalAdapter' -t:Shared\Rendering\RendererBase -t:Shared\Rendering\RendererUia -t:Shared\Rendering\RendererDx -t:Shared\Rendering\RendererAtlas -t:Shared\Buffer\BufferOut -t:Conhost\winconpty_LIB -t:Shared\Types
 
             if($LastExitCode -ne 0)
             {

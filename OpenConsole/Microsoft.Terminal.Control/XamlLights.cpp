@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 #include "pch.h"
-#include "TermControl.xaml.h"
+#include "TermControl.h"
 #include "XamlLights.h"
 #include "VisualBellLight.g.cpp"
 
@@ -41,7 +41,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
     //   this enables delaying composition object creation until it's actually necessary.
     // Arguments:
     // - newElement: unused
-    void VisualBellLight::OnConnected(UIElement const& newElement)
+    void VisualBellLight::OnConnected(const UIElement& newElement)
     {
         if (!CompositionLight())
         {
@@ -66,7 +66,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
     // - Disposes of composition resources when no longer in use
     // Arguments:
     // - oldElement: unused
-    void VisualBellLight::OnDisconnected(UIElement const& /* oldElement */)
+    void VisualBellLight::OnDisconnected(const UIElement& /* oldElement */)
     {
         if (CompositionLight())
         {
@@ -79,7 +79,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
         return VisualBellLight::GetIdStatic();
     }
 
-    void VisualBellLight::OnIsTargetChanged(DependencyObject const& d, DependencyPropertyChangedEventArgs const& e)
+    void VisualBellLight::OnIsTargetChanged(const DependencyObject& d, const DependencyPropertyChangedEventArgs& e)
     {
         const auto uielem{ d.try_as<UIElement>() };
         const auto brush{ d.try_as<Brush>() };

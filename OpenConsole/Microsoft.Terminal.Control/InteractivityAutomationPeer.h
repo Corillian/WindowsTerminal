@@ -51,6 +51,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
         void SignalSelectionChanged() override;
         void SignalTextChanged() override;
         void SignalCursorChanged() override;
+        void NotifyNewOutput(std::wstring_view newOutput) override;
 #pragma endregion
 
 #pragma region ITextProvider Pattern
@@ -64,10 +65,10 @@ namespace winrt::Microsoft::Terminal::Control::implementation
 
 #pragma region IControlAccessibilityInfo Pattern
         // Inherited via IControlAccessibilityInfo
-        virtual COORD GetFontSize() const override;
-        virtual RECT GetBounds() const override;
-        virtual RECT GetPadding() const override;
-        virtual double GetScaleFactor() const override;
+        virtual COORD GetFontSize() const noexcept override;
+        virtual RECT GetBounds() const noexcept override;
+        virtual RECT GetPadding() const noexcept override;
+        virtual double GetScaleFactor() const noexcept override;
         virtual void ChangeViewport(SMALL_RECT NewWindow) override;
         virtual HRESULT GetHostUiaProvider(IRawElementProviderSimple** provider) override;
 #pragma endregion
@@ -75,6 +76,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
         TYPED_EVENT(SelectionChanged, IInspectable, IInspectable);
         TYPED_EVENT(TextChanged, IInspectable, IInspectable);
         TYPED_EVENT(CursorChanged, IInspectable, IInspectable);
+        TYPED_EVENT(NewOutput, IInspectable, hstring);
 
     private:
         Microsoft::UI::Xaml::Automation::Provider::ITextRangeProvider _CreateXamlUiaTextRange(::ITextRangeProvider* returnVal) const;
@@ -83,8 +85,8 @@ namespace winrt::Microsoft::Terminal::Control::implementation
         winrt::Microsoft::Terminal::Control::implementation::ControlInteractivity* _interactivity;
         weak_ref<Microsoft::UI::Xaml::Automation::Peers::AutomationPeer> _parentProvider;
 
-        til::rectangle _controlBounds{};
-        til::rectangle _controlPadding{};
+        til::rect _controlBounds{};
+        til::rect _controlPadding{};
 
         winrt::com_array<Microsoft::UI::Xaml::Automation::Provider::ITextRangeProvider> WrapArrayOfTextRangeProviders(SAFEARRAY* textRanges);
     };

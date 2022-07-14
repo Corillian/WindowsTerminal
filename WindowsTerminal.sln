@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenConsole", "OpenConsole", "{0E759681-E62E-493D-88CF-4CC63CDAC3B5}"
+	ProjectSection(SolutionItems) = preProject
+		OpenConsole\packages.config = OpenConsole\packages.config
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{8AC0A4F8-C48F-4FF1-9D5F-CC24C00DD0BB}"
 	ProjectSection(SolutionItems) = preProject

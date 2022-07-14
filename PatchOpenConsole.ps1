@@ -90,25 +90,25 @@ $rootDir = [System.IO.Path]::GetDirectoryName($PSCommandPath)
 $patchesDir = [System.IO.Path]::Combine($rootDir, 'OpenConsole', 'patches')
 $openConsoleSrcPath = [System.IO.Path]::Combine($openConsolePath, 'src')
 
-$controlcorepatch = [System.IO.Path]::Combine($patchesDir, 'ControlCore.cpp')
-$controlcoredest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalControl', 'ControlCore.cpp')
-$keychord_h_patch = [System.IO.Path]::Combine($patchesDir, 'KeyChord.h')
-$keychord_h_dest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalControl', 'KeyChord.h')
-$keychord_cpp_patch = [System.IO.Path]::Combine($patchesDir, 'KeyChord.cpp')
-$keychord_cpp_dest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalControl', 'KeyChord.cpp')
-$keychord_idl_patch = [System.IO.Path]::Combine($patchesDir, 'KeyChord.idl')
-$keychord_idl_dest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalControl', 'KeyChord.idl')
-$actionmap_h_patch = [System.IO.Path]::Combine($patchesDir, 'ActionMap.h')
-$actionmap_h_dest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalSettingsModel', 'ActionMap.h')
-$terminalsettings_cpp_patch = [System.IO.Path]::Combine($patchesDir, 'TerminalSettings.cpp')
-$terminalsettings_cpp_dest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalSettingsModel', 'TerminalSettings.cpp')
+#$controlcorepatch = [System.IO.Path]::Combine($patchesDir, 'ControlCore.cpp')
+#$controlcoredest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalControl', 'ControlCore.cpp')
+#$keychord_h_patch = [System.IO.Path]::Combine($patchesDir, 'KeyChord.h')
+#$keychord_h_dest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalControl', 'KeyChord.h')
+#$keychord_cpp_patch = [System.IO.Path]::Combine($patchesDir, 'KeyChord.cpp')
+#$keychord_cpp_dest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalControl', 'KeyChord.cpp')
+#$keychord_idl_patch = [System.IO.Path]::Combine($patchesDir, 'KeyChord.idl')
+#$keychord_idl_dest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalControl', 'KeyChord.idl')
+#$actionmap_h_patch = [System.IO.Path]::Combine($patchesDir, 'ActionMap.h')
+#$actionmap_h_dest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalSettingsModel', 'ActionMap.h')
+#$terminalsettings_cpp_patch = [System.IO.Path]::Combine($patchesDir, 'TerminalSettings.cpp')
+#$terminalsettings_cpp_dest = [System.IO.Path]::Combine($openConsoleSrcPath, 'cascadia', 'TerminalSettingsModel', 'TerminalSettings.cpp')
 $dxrenderer_cpp_patch = [System.IO.Path]::Combine($patchesDir, 'DxRenderer.cpp')
 $dxrenderer_cpp_dest = [System.IO.Path]::Combine($openConsoleSrcPath, 'renderer', 'dx', 'DxRenderer.cpp')
 
-Write-OpenConsolePatch -source $controlcorepatch -dest $controlcoredest
-Write-OpenConsolePatch -source $keychord_h_patch -dest $keychord_h_dest
-Write-OpenConsolePatch -source $keychord_cpp_patch -dest $keychord_cpp_dest
-Write-OpenConsolePatch -source $keychord_idl_patch -dest $keychord_idl_dest
-Write-OpenConsolePatch -source $actionmap_h_patch -dest $actionmap_h_dest
-Write-OpenConsolePatch -source $terminalsettings_cpp_patch -dest $terminalsettings_cpp_dest
+#Write-OpenConsolePatch -source $controlcorepatch -dest $controlcoredest
+#Write-OpenConsolePatch -source $keychord_h_patch -dest $keychord_h_dest
+#Write-OpenConsolePatch -source $keychord_cpp_patch -dest $keychord_cpp_dest
+#Write-OpenConsolePatch -source $keychord_idl_patch -dest $keychord_idl_dest
+#Write-OpenConsolePatch -source $actionmap_h_patch -dest $actionmap_h_dest
+#Write-OpenConsolePatch -source $terminalsettings_cpp_patch -dest $terminalsettings_cpp_dest
 Write-OpenConsolePatch -source $dxrenderer_cpp_patch -dest $dxrenderer_cpp_dest

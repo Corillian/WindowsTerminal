@@ -21,9 +21,6 @@
     <ClCompile Include="AzureCloudShellGenerator.cpp">
       <Filter>profileGeneration</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultProfileUtils.cpp">
-      <Filter>profileGeneration</Filter>
-    </ClCompile>
     <ClCompile Include="PowershellCoreProfileGenerator.cpp">
       <Filter>profileGeneration</Filter>
     </ClCompile>
@@ -53,13 +50,15 @@
     <ClCompile Include="KeyChordSerialization.cpp" />
     <ClCompile Include="Profile.cpp" />
     <ClCompile Include="TerminalSettings.cpp" />
+    <ClCompile Include="DynamicProfileUtils.cpp" />
+    <ClCompile Include="VisualStudioGenerator.cpp" />
+    <ClCompile Include="VsDevCmdGenerator.cpp" />
+    <ClCompile Include="VsDevShellGenerator.cpp" />
+    <ClCompile Include="VsSetupConfiguration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="AzureCloudShellGenerator.h">
-      <Filter>profileGeneration</Filter>
-    </ClInclude>
-    <ClInclude Include="DefaultProfileUtils.h">
       <Filter>profileGeneration</Filter>
     </ClInclude>
     <ClInclude Include="IDynamicProfileGenerator.h">
@@ -100,9 +99,18 @@
     <ClInclude Include="TerminalSettingsSerializationHelpers.h" />
     <ClInclude Include="TerminalWarnings.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="DynamicProfileUtils.h" />
+    <ClInclude Include="MTSMSettings.h" />
+    <ClInclude Include="VisualStudioGenerator.h" />
+    <ClInclude Include="VsDevCmdGenerator.h" />
+    <ClInclude Include="VsDevShellGenerator.h" />
+    <ClInclude Include="VsSetupConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Microsoft_Terminal_Settings_Model.def" />
+    <None Include="defaults.json" />
+    <None Include="defaults-universal.json" />
+    <None Include="userDefaults.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

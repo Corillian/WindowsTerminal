@@ -18,4 +18,16 @@ BOOL WINAPI DllMain(HINSTANCE hInstDll, DWORD reason, LPVOID /*reserved*/)
     return TRUE;
 }
 
+namespace Microsoft::Console::Internal::DefaultApp
+{
+    [[nodiscard]] HRESULT CheckShouldTerminalBeDefault(bool& isEnabled) noexcept
+    {
+        // False since setting Terminal as the default app is an OS feature and probably
+        // should not be done in the open source conhost. We can always decide to turn it
+        // on in the future though.
+        isEnabled = false;
+        return S_OK;
+    }
+}
+
 UTILS_DEFINE_LIBRARY_RESOURCE_SCOPE(L"Microsoft.Terminal.Settings.Model/Resources")

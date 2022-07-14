@@ -7,7 +7,7 @@ constexpr std::wstring_view LocalAppDataAppsPath{ L"%LOCALAPPDATA%\\Microsoft\\W
 
 _TIL_INLINEPREFIX bool IsPackaged()
 {
-    static const bool isPackaged = []() -> bool {
+    static const auto isPackaged = []() -> bool {
         try
         {
             const auto package = winrt::Windows::ApplicationModel::Package::Current();
@@ -71,7 +71,7 @@ _TIL_INLINEPREFIX bool IsDevBuild()
 // - the full path to the exe, one of `wt.exe`, `wtd.exe`, or `WindowsTerminal.exe`.
 _TIL_INLINEPREFIX const std::wstring& GetWtExePath()
 {
-    static const std::wstring exePath = []() -> std::wstring {
+    static const auto exePath = []() -> std::wstring {
         // First, check a packaged location for the exe. If we've got a package
         // family name, that means we're one of the packaged Dev build, packaged
         // Release build, or packaged Preview build.
@@ -111,4 +111,41 @@ _TIL_INLINEPREFIX const std::wstring& GetWtExePath()
         return std::wstring{ WtExe };
     }();
     return exePath;
+}
+
+// Method Description:
+// - Quotes and escapes the given string so that it can be used as a command-line arg.
+// - e.g. given `\";foo\` will return `"\\\"\;foo\\"` so that the caller can construct a command-line
+//   using something such as `fmt::format(L"wt --title {}", QuoteAndQuoteAndEscapeCommandlineArg(TabTitle()))`.
+// Arguments:
+// - arg - the command-line argument to quote and escape.
+// Return Value:
+// - the quoted and escaped command-line argument.
+_TIL_INLINEPREFIX std::wstring QuoteAndEscapeCommandlineArg(const std::wstring_view& arg)
+{
+    std::wstring out;
+    out.reserve(arg.size() + 2);
+    out.push_back(L'"');
+
+    size_t backslashes = 0;
+    for (const auto ch : arg)
+    {
+        if (ch == L'\\')
+        {
+            backslashes++;
+        }
+        else
+        {
+            if (ch == L';' || ch == L'"')
+            {
+                out.append(backslashes + 1, L'\\');
+            }
+            backslashes = 0;
+        }
+        out.push_back(ch);
+    }
+
+    out.append(backslashes, L'\\');
+    out.push_back(L'"');
+    return out;
 }

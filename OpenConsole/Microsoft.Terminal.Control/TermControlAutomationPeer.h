@@ -28,7 +28,7 @@ Modifications:
 
 #pragma once
 
-#include "TermControl.xaml.h"
+#include "TermControl.h"
 #include "ControlInteractivity.h"
 #include "TermControlAutomationPeer.g.h"
 #include "../../external/terminal/src/types/TermControlUiaProvider.hpp"
@@ -52,6 +52,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
 
         void UpdateControlBounds();
         void SetControlPadding(const Core::Padding padding);
+        void RecordKeyEvent(const WORD vkey);
 
 #pragma region FrameworkElementAutomationPeer
         hstring GetClassNameCore() const;
@@ -68,6 +69,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
         void SignalSelectionChanged() override;
         void SignalTextChanged() override;
         void SignalCursorChanged() override;
+        void NotifyNewOutput(std::wstring_view newOutput) override;
 #pragma endregion
 
 #pragma region ITextProvider Pattern
@@ -82,5 +84,6 @@ namespace winrt::Microsoft::Terminal::Control::implementation
     private:
         winrt::Microsoft::Terminal::Control::implementation::TermControl* _termControl;
         Control::InteractivityAutomationPeer _contentAutomationPeer;
+        std::deque<wchar_t> _keyEvents;
     };
 }
